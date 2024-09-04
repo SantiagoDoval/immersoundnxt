@@ -1,0 +1,178 @@
+@import '@/styles/variables.scss';
+
+
+.state-container{
+    margin-top: 50px;
+    text-align: center;
+    position: relative;
+    padding: 0 100px;
+    @include flex($align:center,$direction:column);
+  
+    .state-title{
+      width: 512px;
+      margin-bottom: 50px;
+    }
+  
+    .volver{
+     position: absolute;
+     left: 100px;
+  
+      @include from($x-large){
+      left: 0;
+      }
+      @include from($medium){
+        position: relative;
+        margin-bottom: 40px;
+      }
+  
+    }  
+  
+    @include from($x-large){
+      padding: 0;
+    }
+
+    @include from($medium){
+      margin-top: 10px;
+      .back-cont{
+        width: 100%;
+        text-align: left
+      }
+    }
+  }
+  
+  .box-light{
+    @include flex();
+    color: $blue-dark;
+    font-size: 14px;
+    gap: 20px;
+    padding:20px;
+    background-color: $blue-light;
+    font-weight: 400;
+    border-radius:5px ;
+  
+    @include from($medium){
+      @include flex($direction:column);
+      gap: 10px;
+      padding: 15px;
+  
+      p{
+        margin: 0;
+      }
+    }
+  
+    .link{
+      cursor: pointer;
+      font-weight: 500;
+    }
+  
+  }
+  
+  .state-data-cont{
+    gap: 50px;
+    width: 100%;
+    @include flex($direction:row,$justify:space-between);
+    margin: 50px 0;
+    font-size: 18px;
+  
+    @include from($large){
+      @include flex($direction:column);
+      font-size: 18px;
+      gap: 20px;
+    }
+  
+    @include from($medium){
+      margin-bottom: 10px;
+    }
+    p{
+      margin: 5px 0;
+      font-weight: 500;
+      span{
+        font-weight: 300;
+      }
+    }
+    h4{
+      font-size: 28px;
+      margin: 0;
+      font-weight: 400;
+      @include from($medium){
+        font-size: 22px;
+      }
+    }
+    .left-cont{
+      flex: 0 0 30%;
+      button{
+        margin: 20px auto;
+      }
+      @include from($large){
+        flex: 1;
+      }
+    }
+    .right-cont{
+      flex: 0 0 60%;
+      .buttons-cont{
+        margin: 20px auto;
+        @include flex($direction:row,$justify:space-around)
+      }
+      @include from($large){
+        flex: 1;
+      }
+    }
+    .information-cont{
+  
+      background-color: $blue-main;
+      padding: 50px;
+      @include flex($align:start,$direction:column);
+      border-radius: 25px;
+      color: $white-text;
+      min-height: 350px;
+  
+      @include from($medium){
+        padding: 30px 20px;
+        min-height: auto;
+      }
+  
+    }
+    .history-cont{
+      min-height: 350px;
+      background-color: $blue-pale;
+      @include flex($align:start,$direction:column);
+      padding:50px;
+      border-radius: 25px;
+      color: $white-text;
+  
+      @include from($medium){
+        padding: 30px 20px;
+        min-height: auto;
+      }
+  
+    }
+  
+  }
+  .state-subtitle{
+    @include flex($direction:row, $justify:center,$align:center);
+    margin-bottom: 40px;
+    @include from($medium){
+      margin-bottom:15px;
+    }
+  }
+  
+  .progress-data-cont{
+    width: 100%;
+    background-color: $blue-light;
+    margin-bottom: 100px;
+    border-radius: 20px;
+    padding: 50px 50px 75px 50px;
+    @include flex($align:start,$direction:column);
+    h4{
+      font-size: 28px;
+      margin: 0;
+      font-weight: 400;
+      color: $blue-dark;
+    }
+  
+    @include from($medium){
+      padding: 35px 15px;
+      margin-bottom: 45px;
+    }
+  }
+  

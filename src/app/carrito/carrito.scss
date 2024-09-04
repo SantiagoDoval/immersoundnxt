@@ -1,0 +1,96 @@
+@import '@/styles/variables.scss';
+
+.main-container{
+
+  .shopping-container{
+    background-color: $white-main-50;
+    width: 460px;
+    margin: 0 auto 50px auto;
+    padding: 20px 40px;
+    box-sizing: border-box;
+    border-radius: 25px;
+    @include flex($direction:column,$justify:center);
+    text-align: center;
+    box-sizing:border-box;
+
+    @include from($medium){
+      width: 95%;
+      padding: 10px;
+    }
+    h3,h2{
+      font-weight: 300;
+    }
+    .pay-cont{
+      @include flex($direction:row,$justify:center);
+      margin: 15px 0;
+      gap: 30px;
+      img{
+        transition: all 0.3s;
+        cursor: pointer;
+        width: 75px;
+
+        &:hover{
+          transform: scale(1.1);
+        }
+      }
+    }
+
+  }
+  .success-container{
+    @extend .shopping-container;
+    width: 55%;
+    padding:40px;
+    @include from($medium){
+      width: 95%;
+    }
+
+    .check-icon{
+      width: 100px;
+      margin: 5px auto;
+    }
+  }
+}
+
+.blue-card-1{
+  background-color: $blue-card-1;
+  @include flex($direction:row,$align:center);
+  border-radius: 10px;
+  margin-bottom: 15px;
+  color: $white-text;
+
+  padding:20px;
+  div{
+    flex: 1;
+  }
+}
+
+.blue-card-2{
+  margin-top: 15px;
+  background-color: $blue-card-2;
+  @include flex($direction:column);
+  border-radius: 10px;
+  padding:20px;
+  color: $white-text;
+}
+
+.cupon-cont{
+  @include flex($direction:row,$justify:space-between,$align:center);
+  gap: 5px;
+  .input-white{
+    padding-top: 15px;
+    @include flex($direction:column,$justify:center,$align:center);
+  }
+  @include from($medium){
+    @include flex($direction:column);
+  }
+}
+
+.info-card{
+  font-size: 14px;
+  @include flex($direction:row,$justify:space-between);
+
+  &.total{
+    border-top: 1px solid rgba(0,0,0,0.1);
+    font-size: 18px;
+  }
+}

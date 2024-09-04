@@ -1,0 +1,37 @@
+/*Breakpoints*/
+$small: 380px; /*-------- Mobile devices*/
+$s-medium: 570px; /*-------- Tablet devices*/
+$medium: 768px;
+$large: 960px;
+$x-large: 1060px; /*-------- Desktop devices*/
+$xx-large: 1250px;
+$xxx-large: 1440px;
+$high-quality: 1700px;
+
+/*Colors*/
+$dark-main:#1B1B21;
+$white-main-50:#767680;
+$blue-main:#292DEE;
+$blue-main-hover:#2123be;
+$blue-pale:#525A92;
+$blue-light:#e0e0ff;
+$blue-light-hover:#c0c0dc;
+$blue-dark:#232C61;
+$blue-card-1:#5C63FF;
+$blue-card-2:#7D84FF;
+
+$white-text:#ffffff;
+
+@mixin from($size) {
+	@media (max-width: $size) {
+		@content;
+	}
+}
+
+@mixin flex($justify: initial, $align: initial, $direction: row, $wrap: nowrap) {
+	display: flex;
+	flex-direction: $direction;
+	flex-wrap: $wrap;
+	justify-content: $justify;
+	align-items: $align;
+}

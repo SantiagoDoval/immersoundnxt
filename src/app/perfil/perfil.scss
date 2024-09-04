@@ -1,0 +1,84 @@
+@import '@/styles/variables.scss';
+
+.profile-container{
+  margin-top: 50px;
+  text-align: center;
+  position: relative;
+  padding: 0 100px 50px;
+  @include flex($align:center,$direction:column);
+
+  .profile-title{
+    width: 512px;
+    margin-bottom: 50px;
+  }
+
+  .image-title-section{
+    width: 360px;
+    @include from($s-medium){
+      width: 80%;
+    }
+  }
+
+  @include from($medium){
+    padding: 10px 30px 50px 30px;
+
+  }
+
+}
+
+.info-profile-cont{
+  width: 100%;
+  @include flex($direction:row);
+
+  @include from($x-large){
+    @include flex($direction:column);
+  }
+
+  .image-profile{
+    flex: 0 0 30%;
+    @include flex($direction:column,$align:center);
+
+    img{
+      width: 200px;
+      @include from($medium){
+        width: 125px;
+      }
+    }
+  }
+
+  .data-profile{
+    flex:1;
+    @include flex($direction:column,$align:start);
+
+    .row-input-1{
+      width: 50%;
+      @include flex($direction:column,$align:start);
+      mat-form-field{
+        width: 100%;
+      }
+
+      @include from($medium){
+        width: 100%;
+      }
+
+    }
+
+    .row-input-2{
+      width: 100%;
+      mat-form-field{
+        flex:1;
+      }
+    }
+
+    .btn-blue{
+      margin: 0;
+    }
+  }
+}
+
+.line{
+  margin-top: 15px;
+  width: 100%;
+  height: 1px;
+  background-color: $white-text;
+}

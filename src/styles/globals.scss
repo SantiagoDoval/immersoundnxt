@@ -1,0 +1,210 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import '@/styles/variables.scss';
+
+html, body { 
+    height: 100%; background-color: $dark-main;  
+}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.container{
+  width: 90%;
+  margin: 0 auto;
+}
+
+.btn-blue{
+  width: fit-content;
+  margin: 0 auto;
+  text-transform: uppercase !important;
+  color: $white-text !important;
+  cursor: pointer;
+  border: none;
+  border-radius: 50px !important;
+  transition: all .3s !important;
+  padding: 10px 20px !important;
+  background-color: $blue-main !important;
+  display: flex;
+  align-items: center !important;  
+  font-size: 13px;
+
+  &:hover{
+    background-color: $blue-main-hover !important;
+  }
+}
+.btn-light{
+  width: fit-content;
+  margin: 0 auto;
+  background-color: $white-main-50;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  color: $white-text;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+  margin-bottom: 10px;
+  transition: all .3s;  
+  font-size: 13px;
+
+  &:hover{
+    background-color: $blue-main;
+  }
+
+}
+
+.btn-dark{
+  width: fit-content;
+  margin: 0 auto;
+  background-color: $dark-main;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  color: $white-text;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+  margin-bottom: 10px;
+  transition: all .3s;
+  font-size: 13px;
+  &:hover{
+    color: $dark-main ;
+    background-color: $blue-light;
+  }
+
+}
+
+.btn-style-1{
+  width: fit-content;
+  margin: 0 auto;
+  background-color: $blue-light;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  color: $blue-dark;
+  cursor: pointer;
+  border: none;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  transition: all .3s;
+
+  &:hover{
+    background-color: $blue-light-hover;
+  }
+
+}
+
+.image-title-section{
+  width: 512px;
+  margin-bottom: 50px;
+  @include from($medium){
+    width: 75%;
+  }
+}
+
+.p-info{
+  font-weight: 300;
+  margin: 10px 0 0 0;
+  font-size: 14px;
+}
+.p-link{
+  color: $dark-main;
+  font-size: 14px;
+  font-weight: 300;
+  margin: 10px 0;
+  text-decoration:underline;
+  cursor: pointer;
+}
+
+.p-link-white {
+  @extend .p-link;
+  color: $white-text;
+}
+
+.row-input-2{
+  width: 100%;
+  @include flex();
+  gap: 20px;
+
+  @include from($s-medium){
+    @include flex($direction:column);
+    gap: 12px;
+  }
+}
+
+.select-cont select{
+  border: none;
+    box-shadow: none;
+    background-color: transparent;
+    color: $white-text;
+    outline: none;
+
+    option{
+      background-color: $blue-dark;
+    }
+}
+
+.input-form-style{
+    background-color: transparent;
+    border: 1px solid $white-text;
+    border-radius: 5px ;
+    height: 48px;
+    padding-left: 10px;
+    margin: 10px auto;
+    outline: none;
+    color: $white-text;
+}
+
+.main-container{
+  width: 100%;
+  min-height: calc(100vh - 120px) ;
+  height: auto;
+  
+  @include flex($align:center,$direction:column);
+
+
+  .logo{
+    margin-bottom: 50px;
+    width: 200px;
+  }
+  .login-container{
+    background-color: $white-main-50;
+    width: 460px;
+    margin: 0 auto 50px auto;
+    padding: 20px 40px;
+    box-sizing: border-box;
+    border-radius: 25px;
+    // @include flex($direction:column,$justify:center);
+    text-align: center;
+    box-sizing:border-box;
+
+    @include from($medium){
+      width: 95%;
+      padding: 10px;
+    }
+    h3{
+      color: $white-text;
+      font-weight: 300;
+    }
+
+    .input{
+      width: 80% ;
+      // background-color: $white-main-50 !important;
+      margin: 0 auto;
+      @include from($medium){
+        width: 100%;
+        margin-left: 0 !important
+      }
+    }
+
+    // ::ng-deep .mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label{
+    //   color:blueviolet !important
+    // }
+  }
+  .singin-container{
+    @extend .login-container;
+    width: 55%;
+    padding: 20px 40px;
+    @include from($medium){
+      width: 95%;
+    }
+  }
+}
