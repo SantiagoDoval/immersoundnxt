@@ -6,11 +6,9 @@ import { TextField } from '@mui/material'
 import { inputStyle } from '@/utils/inputStyle'
 import Link from 'next/link'
 import { useState } from 'react'
-import toast, { Toaster } from 'react-hot-toast';
-import { AuthenticationServices } from '@/services/authentication/authentication.services'
 import ForgotPassword from '@/components/forgotPassword/ForgotPassword'
-import { signIn } from "next-auth/react"
 import { useRouter } from 'next/navigation'
+import { signIn } from 'next-auth/react';
 
 const Login = () => {
 
@@ -19,8 +17,8 @@ const Login = () => {
     const [recoveryPassword, setRecoveryPassword] = useState(false);
 
     const handleLogin = async () => {
-        router.push('/carrito')
-        // signIn('login')
+        // router.push('/carrito')
+        
         // const result = await signIn("credentials", {
         //     redirect: false,
         //     email:'luisjaviermezahernandez@gmail.com',
@@ -32,6 +30,7 @@ const Login = () => {
         // } else {
         //     router.push("/carrito"); 
         // }
+        router.push("/carrito"); 
     }
 
 

@@ -11,13 +11,13 @@ export class AuthenticationServices{
 
     static userRecoveryPassword(
         payload:IUserRecoveryPassword,
-    ):Promise<AxiosResponse<IUserRegistrationResponse>>{
+    ):Promise<AxiosResponse<any>>{
         return axiosInstance.post(FORGOT_PASSWORD,payload)
     }
 
     static userLogin(
         payload:IUserLogin,
-    ):Promise<AxiosResponse<IUserRegistrationResponse>>{
+    ):Promise<AxiosResponse<any>>{
         return axiosInstance.post(LOGIN,payload)
     }
 }

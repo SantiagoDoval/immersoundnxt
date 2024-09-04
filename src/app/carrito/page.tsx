@@ -8,9 +8,47 @@ import stripe from '@/assets/stripe.png'
 import checkCircle from '@/assets/check-circle.png'
 import { useState } from "react"
 import Link from "next/link"
+import { AuthenticationServices } from "@/services/authentication/authentication.services"
+import { PaymentServices } from "@/services/payment/payment.services"
+import toast, { Toaster } from "react-hot-toast"
+import { useRouter } from "next/navigation"
 
 const Carrito = () => {
+    const route=useRouter();
     const [toggle, setToggle] = useState(false)
+
+    const handlePayment = async () => {
+        const payload = {
+            "packageId": 3,
+            "userId": 6,
+            "paymentMethod": "STRIPE",
+            "quantity": 1,
+            "promocode": "PRIMERAVEZ"
+        }
+
+        try {
+            // const response = await PaymentServices.stripePayment(payload)
+            const response={
+                status:200,
+                data:{
+                    code:200,
+                    data:{
+                        id:'',
+                        redirecTo:'https://checkout.stripe.com/c/pay/cs_test_a1Urg5stL9LHoWKbdPsIWFONzdvEoE263R6ARdhCbCpTFMlZeaAOevu0QU#fidkdWxOYHwnPyd1blpxYHZxWjA0Sn9JdnFGNUFXTTN2N3NxZF1ia3ZydVJ2YjxwRHEzaHB2dnZ1fTFkaTxdXzFhUXNdZnF9aT1ONm5OYjRsZ0p8VzdqTDc2cUJOSmtkRmdhYzNdckY0d1I3NTUxfDUzPTQ9NCcpJ2N3amhWYHdzYHcnP3F3cGApJ2lkfGpwcVF8dWAnPyd2bGtiaWBabHFgaCcpJ2BrZGdpYFVpZGZgbWppYWB3dic%2FcXdwYHgl'
+                    }
+                }
+            }
+            if (response.status !== 200 ) {
+                toast('Algo salio mal');
+            }
+            if (response.status === 200 && response.data.code === 200) {                
+                window.open(response.data.data.redirecTo, '_blank', 'noopener,noreferrer');                
+                route.push('/biblioteca')
+            }
+        } catch (error) {
+            toast.error('Algo salio mal');
+        }
+    }
     return (
         <section className="container">
             <div className="main-container">
@@ -53,11 +91,12 @@ const Carrito = () => {
                             </div>
                         </div>
                         <p className="p-info text-white">Escoge tu método de pago</p>
-                        <div className="pay-cont">
-                            <Image src={paypal} width={236} height={236} alt="" />
+                        <div className="flex mx-auto items-center justify-center w-14 my-5">
+                            {/* <Image src={paypal} width={236} height={236} alt="" /> */}
                             <Image src={stripe} width={236} height={236} alt="" />
                         </div>
-                        <button onClick={() => setToggle(prev => !prev)} className="btn-blue">Pagar</button>
+                        <button onClick={handlePayment} className="btn-blue">Pagar</button>
+                        <Toaster />
                         <p className="p-info text-white">Al hacer click en pagar estas aceptando los </p>
                         <p className="p-link-white">términos y condiciones</p>
                     </div>)
