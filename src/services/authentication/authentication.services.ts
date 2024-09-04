@@ -1,5 +1,5 @@
 import { axiosInstance } from "@/common/axios-instance";
-import { FORGOT_PASSWORD, SIGN_UP } from "@/constants/api-endpoints";
+import { FORGOT_PASSWORD, LOGIN, SIGN_UP } from "@/constants/api-endpoints";
 import { AxiosResponse } from "axios";
 
 export class AuthenticationServices{
@@ -13,5 +13,11 @@ export class AuthenticationServices{
         payload:IUserRecoveryPassword,
     ):Promise<AxiosResponse<IUserRegistrationResponse>>{
         return axiosInstance.post(FORGOT_PASSWORD,payload)
+    }
+
+    static userLogin(
+        payload:IUserLogin,
+    ):Promise<AxiosResponse<IUserRegistrationResponse>>{
+        return axiosInstance.post(LOGIN,payload)
     }
 }

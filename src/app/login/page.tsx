@@ -8,37 +8,32 @@ import Link from 'next/link'
 import { useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast';
 import { AuthenticationServices } from '@/services/authentication/authentication.services'
+import ForgotPassword from '@/components/forgotPassword/ForgotPassword'
+import { signIn } from "next-auth/react"
+import { useRouter } from 'next/navigation'
 
 const Login = () => {
 
-    const [email,setEmail]=useState<string>('')
+    const router=useRouter();
+
     const [recoveryPassword, setRecoveryPassword] = useState(false);
 
+    const handleLogin = async () => {
+        router.push('/carrito')
+        // signIn('login')
+        // const result = await signIn("credentials", {
+        //     redirect: false,
+        //     email:'luisjaviermezahernandez@gmail.com',
+        //     password:'123456'
+        // });
 
-    const handleRecoveryPassword = async () => {
-
-        if (!email) return toast('Ingresa un correo valido')        
-
-        try {
-            const response=await AuthenticationServices.userRecoveryPassword({email})
-            if(response.status!==200 || response.data.code ===400){                
-                toast('Usuario no encontrado');
-            }
-            if(response.status===200 && response.data.code ===200){  
-                            
-                toast('Enlace para restablecer contraseña enviada al correo', {
-                    duration: 3000,
-                    icon:'📧'
-                })
-                setTimeout(()=>{
-                    setRecoveryPassword(!email)
-                }, 3000)
-            }
-        } catch (error) {
-            toast('Usuario no encontrado');
-        }
-
+        // if (result?.error) {
+        //     console.log("Credenciales incorrectas, por favor inténtalo de nuevo.");
+        // } else {
+        //     router.push("/carrito"); 
+        // }
     }
+
 
     return (
         <section className="container">
@@ -66,28 +61,13 @@ const Login = () => {
                             <Link href={'/registro'} >
                                 <p className="p-link">Soy nuevo</p>
                             </Link>
-                            <Link href={'/carrito'}>
-                                <button className="btn-light">Iniciar sesión</button>
-                            </Link>
+                            <button onClick={handleLogin} className="btn-light">Iniciar sesión</button>
+
                             <p className="p-info text-white">Al hacer click en pagar estas aceptando los </p>
                             <p className="p-link-white">términos y condiciones</p>
                         </>
                     ) : (
-                        <>
-                            <h3 className='text-white my-3 text-xl'>¿Olvidaste tu contraseña?</h3>
-                            <p className="p-info text-white !mb-5">Escribe el correo electrónico con el cuál te registraste y te enviaremos las instrucciones de restablecimiento.</p>
-                            <TextField
-                                className='w-full !mb-5'
-                                label="Email"
-                                variant="outlined"
-                                sx={inputStyle}
-                                value={email}
-                                onChange={(e)=>setEmail(e.target.value)} />
-                            <button onClick={handleRecoveryPassword} className="btn-light">Enviar</button>
-                            <Toaster />
-                            <p onClick={() => setRecoveryPassword(prev => !prev)} className="p-link">Iniciar sesión</p>
-
-                        </>
+                        <ForgotPassword setRecoveryPassword={setRecoveryPassword} />
                     )}
                 </div>
             </div >

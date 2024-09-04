@@ -1,6 +1,6 @@
 'use client'
 
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import logo from '@/assets/LogoW.png'
 import {  useEffect, useState } from 'react'
@@ -10,7 +10,21 @@ import { inputStyle } from '@/utils/inputStyle'
 import Link from 'next/link'
 import toast from 'react-hot-toast'
 
+interface formData{
+    firstName:string,
+    lastName:string,
+    email:string,
+    password:string,
+    country:string,
+    confirmPassword:string,
+    termAndCondition:boolean
+}
+
+type dataToSubmit=Omit<formData,'confirmPassword'>
+
 const Registro = () => {
+
+    const router=useRouter();
 
     const [formData,setFormData]=useState({
         firstName:'',
@@ -88,7 +102,7 @@ const Registro = () => {
 
         if(validateForm()){
 
-            const {confirmPassword,...dataToSubmit}=formData;
+            const {confirmPassword,...dataToSubmit}:dataToSubmit=formData;
 
             setSubmittedData([...submittedData,dataToSubmit])
             
@@ -113,6 +127,7 @@ const Registro = () => {
                         icon:'📧'
                     })
                     setTimeout(()=>{
+                        router.push('/login')
                     }, 3000)
                 }
             } catch (error) {
