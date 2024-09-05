@@ -9,28 +9,34 @@ import { useState } from 'react'
 import ForgotPassword from '@/components/forgotPassword/ForgotPassword'
 import { useRouter } from 'next/navigation'
 import { signIn } from 'next-auth/react';
+import toast, { Toaster } from 'react-hot-toast'
+
 
 const Login = () => {
 
     const router=useRouter();
 
     const [recoveryPassword, setRecoveryPassword] = useState(false);
+    const [formData,setFormData]=useState({
+        email:'luisjaviermezahernandez@gmail.com',
+        password:'123456'
+    })
 
-    const handleLogin = async () => {
-        // router.push('/carrito')
+    const handleLogin = async () => { 
         
-        // const result = await signIn("credentials", {
-        //     redirect: false,
-        //     email:'luisjaviermezahernandez@gmail.com',
-        //     password:'123456'
-        // });
-
-        // if (result?.error) {
-        //     console.log("Credenciales incorrectas, por favor inténtalo de nuevo.");
-        // } else {
-        //     router.push("/carrito"); 
-        // }
-        router.push("/carrito"); 
+        const result=await signIn('credentials',{
+            redirect:false,
+            email:formData.email,
+            password:formData.password
+        })     
+        
+        
+        if (result?.error) {
+            toast.error('Usuario y contraseña incorrectas')
+        } else {
+            router.push("/carrito"); 
+        }
+        // router.push("/carrito"); 
     }
 
 
@@ -47,12 +53,21 @@ const Login = () => {
                                     className='w-full'
                                     label="Email"
                                     variant="outlined"
-                                    sx={inputStyle} />
+                                    type='email'
+                                    sx={inputStyle}
+                                    value={formData.email}
+                                    onChange={(e)=>setFormData({...formData,email:e.target.value})}
+                                     />
                                 <TextField
                                     className='w-full'
                                     label="Contraseña"
                                     variant="outlined"
-                                    sx={inputStyle} />
+                                    sx={inputStyle} 
+                                    type='password'
+                                    value={formData.password}
+                                    onChange={(e)=>setFormData({...formData,password:e.target.value})}
+                                    /> 
+                                <Toaster />                                   
                             </div>
                             <p onClick={() => setRecoveryPassword(prev => !prev)} className="p-link">Olvide mi contraseña</p>
                             <button className="btn-light">continuar con google</button>

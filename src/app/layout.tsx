@@ -3,6 +3,8 @@ import { Inter, Montserrat } from "next/font/google";
 import '@/styles/globals.scss'
 import Navbar from "@/components/layout/navbar/Navbar";
 import Header from "@/components/layout/navbar/Header";
+import SessionProviderWrapper from "@/components/sessionProvider/SessionProviderWrapper";
+
 
 const monserrat = Montserrat({ subsets: ["latin"] });
 
@@ -13,15 +15,19 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  session
 }: Readonly<{
   children: React.ReactNode;
+  session:any
 }>) {
   return (
     <html lang="en">
-      <body className={monserrat.className}>
-        <Header />
-        {children}
+        <body className={monserrat.className}>
+          <SessionProviderWrapper>
+            <Header />
+            {children}
+          </SessionProviderWrapper>
         </body>
-    </html>
+      </html>
   );
 }

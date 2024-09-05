@@ -8,6 +8,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { useState } from 'react';
 import Link from 'next/link';
+import { signOut } from 'next-auth/react';
 
 const NavbarLibrary = () => {
 
@@ -53,9 +54,9 @@ const NavbarLibrary = () => {
                         <Link href={''}>
                             <MenuItem className='text-white' onClick={handleClose}>Planes</MenuItem>
                         </Link>
-                        <Link href={'/login'}>
+                        <button onClick={() => signOut({ callbackUrl: '/login' })}>
                             <MenuItem className='text-white' onClick={handleClose}>Cerrar sesión</MenuItem>
-                        </Link>
+                        </button>
                     </Menu>
                 </div>
             </div>
