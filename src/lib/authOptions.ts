@@ -61,6 +61,7 @@ const authOptions={
         if (user) {
           // Incluye el token temporal en el objeto JWT
           token.token = user.token;
+          token.test='test;'
         }
         return token;
       },

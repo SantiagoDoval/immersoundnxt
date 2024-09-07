@@ -18,6 +18,6 @@ export class AuthenticationServices{
     static userLogin(
         payload:IUserLogin,
     ):Promise<AxiosResponse<any>>{
-        return axiosInstance.post(LOGIN,payload)
+        return axiosInstance.post(LOGIN,payload)        
     }
 }

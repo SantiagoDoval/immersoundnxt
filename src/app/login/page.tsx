@@ -5,16 +5,19 @@ import logo from '@/assets/LogoW.png'
 import { TextField } from '@mui/material'
 import { inputStyle } from '@/utils/inputStyle'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import ForgotPassword from '@/components/forgotPassword/ForgotPassword'
 import { useRouter } from 'next/navigation'
-import { signIn } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
 import toast, { Toaster } from 'react-hot-toast'
+import { getServerSession } from 'next-auth'
 
 
 const Login = () => {
 
     const router=useRouter();
+
+    const { data: session, status } = useSession();
 
     const [recoveryPassword, setRecoveryPassword] = useState(false);
     const [formData,setFormData]=useState({

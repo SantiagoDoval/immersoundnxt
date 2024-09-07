@@ -7,6 +7,9 @@ export const FORGOT_PASSWORD='/dev/auth/forgot-password';
 
 //Payment
 
-export const PAYMENT_STRIPE='/dev/payment/stripe/create-checkout-session'
+export const PAYMENT_STRIPE='/dev/payment/stripe/create-checkout-session';
 
+//Client
+
+export const GET_SUPPORT='/client/library/3/support';
 
