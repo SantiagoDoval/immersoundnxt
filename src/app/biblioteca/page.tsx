@@ -28,21 +28,21 @@ const data=[
     creation:'06/09/2024',
     state:'notStarted'
   },{
-    id:'1',
+    id:'4',
     name:'Soltera',
     duration:'2:41',
     creation:'06/09/2024',
     state:'inProcess'
   },
   {
-    id:'2',
+    id:'5',
     name:'My Space',
     duration:'1:41',
     creation:'06/09/2024',
     state:'finished'
   },
   {
-    id:'3',
+    id:'6',
     name:'Am',
     duration:'1:41',
     creation:'06/09/2024',
@@ -59,7 +59,7 @@ const Biblioteca = () => {
       <section className="container">      
           <div className="library-container">
               <Image className="image-title-section" src={bibliotecaTitle} width={520} height={300} alt="title" />
-              {(data.length===0) ? (
+              {(data1.length===0) ? (
                 <FirstSongUpload />
               ):(
                 <div className='w-full'>

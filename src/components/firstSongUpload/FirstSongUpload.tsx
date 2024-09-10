@@ -37,7 +37,7 @@ const FirstSongUpload = () => {
                     <CloseIcon onClick={handleCloseTutorial} className='cursor-pointer' />
                 </DialogTitle>
                 <DialogContent>
-                    <DialogContentText id="alert-dialog-description" className='flex flex-col items-center'>
+                    <DialogContentText id="alert-dialog-description" className='flex w-full flex-col items-center'>
                         <iframe width="560" height="315" src="https://www.youtube.com/embed/XHOmBV4js_E?si=Gzw_NIYwhleXUAD1" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
                     </DialogContentText>
                 </DialogContent>

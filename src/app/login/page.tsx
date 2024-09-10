@@ -11,6 +11,8 @@ import { useRouter } from 'next/navigation'
 import { signIn, useSession } from 'next-auth/react';
 import toast, { Toaster } from 'react-hot-toast'
 import { getServerSession } from 'next-auth'
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 
 const Login = () => {
@@ -18,6 +20,13 @@ const Login = () => {
     const router=useRouter();
 
     const { data: session, status } = useSession();
+    console.log("🚀 ~ Login ~ session:", session)
+
+    useEffect(() => {        
+		if (status === 'authenticated') {
+			router.push('/biblioteca');
+		}
+	}, [status]);
 
     const [recoveryPassword, setRecoveryPassword] = useState(false);
     const [formData,setFormData]=useState({
@@ -31,17 +40,30 @@ const Login = () => {
             redirect:false,
             email:formData.email,
             password:formData.password
-        })     
-        
+        })            
         
         if (result?.error) {
             toast.error('Usuario y contraseña incorrectas')
-        } else {
-            router.push("/carrito"); 
-        }
+            return;
+        } 
+        
+        router.push("/carrito"); 
+        
         // router.push("/carrito"); 
     }
 
+    
+        if( status==='loading' || status==='authenticated'){
+            return (
+                <div className='flex flex-col w-full mt-40 items-center justify-center'>            
+                    <Box sx={{ display: 'flex' }}>
+                        <CircularProgress />
+                    </Box>
+                    <p className='text-white mt-5'>Loading...</p>
+                </div>
+            );
+        }
+    
 
     return (
         <section className="container">

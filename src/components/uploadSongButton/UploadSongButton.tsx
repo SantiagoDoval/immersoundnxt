@@ -22,24 +22,23 @@ const UploadSongButton = () => {
             <Dialog
                 open={open}
                 onClose={handleClose}
+                className='flex flex-col'
             >
-                <DialogTitle id="alert-dialog-title" className='flex'>
-                    <h3 className='w-full text-center'>Sube tu canción</h3>
+                <div className='flex p-5 pb-0'>
+                    <h3 className='w-full text-center ml-5 font-bold '>Sube tu canción</h3>
                     <CloseIcon onClick={handleClose} className='cursor-pointer' />
-                </DialogTitle>
-                <DialogContent>
-                    <DialogContentText id="alert-dialog-description" className='flex flex-col items-center'>
-                        <Image className="logo-modal" width={85} src={logoBlack} alt="Immersound logo black" />
-                        <div className='pt-5 flex gap-2'>
-                            <TextField id="outlined-basic" label="Nombre" variant="outlined" />
-                            <TextField id="outlined-basic" label="Artista" variant="outlined" />
-                            <TextField id="outlined-basic" label="Especialidad" variant="outlined" />
-                        </div>
-                        <div className='flex py-7 gap-5'>
-                            <button className='btn-blue'>+ CARGA MASTER (.wav)</button>
-                            <button className='btn-blue'>+ CARGA STEMS (.zip)</button>
-                        </div>
-                    </DialogContentText>
+                </div>
+                <DialogContent className='flex flex-col items-center'>                    
+                    <Image className="logo-modal" width={85} src={logoBlack} alt="Immersound logo black" />
+                    <div className='pt-5 flex gap-2'>
+                        <TextField id="outlined-basic" label="Nombre" variant="outlined" />
+                        <TextField id="outlined-basic" label="Artista" variant="outlined" />
+                        <TextField id="outlined-basic" label="Especialidad" variant="outlined" />
+                    </div>
+                    <div className='flex py-7 gap-5'>
+                        <button className='btn-blue'>+ CARGA MASTER (.wav)</button>
+                        <button className='btn-blue'>+ CARGA STEMS (.zip)</button>
+                    </div>                    
                 </DialogContent>
             </Dialog>
         </>

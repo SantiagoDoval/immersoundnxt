@@ -5,10 +5,11 @@ import Image from 'next/image'
 import logo from '@/assets/LogoW.png'
 import {  useEffect, useState } from 'react'
 import { AuthenticationServices } from '@/services/authentication/authentication.services'
-import { TextField } from '@mui/material'
+import { Box, CircularProgress, TextField } from '@mui/material'
 import { inputStyle } from '@/utils/inputStyle'
 import Link from 'next/link'
 import toast from 'react-hot-toast'
+import { useSession } from 'next-auth/react'
 
 interface formData{
     firstName:string,
@@ -24,7 +25,17 @@ type dataToSubmit=Omit<formData,'confirmPassword'>
 
 const Registro = () => {
 
-    const router=useRouter();
+    const router=useRouter();   
+
+    const { data: session, status } = useSession();
+
+    
+
+    useEffect(() => {        
+		if (status === 'authenticated') {
+			router.push('/biblioteca');
+		}
+	}, [status]);
 
     const [formData,setFormData]=useState({
         firstName:'',
@@ -59,37 +70,36 @@ const Registro = () => {
 
         if(!formData.firstName){
             newErrors.firstName='Nombre obligatorio'
-            formIsValid=false;
+            // formIsValid=false;
         }
-
+    
         if(!formData.lastName){
             newErrors.lastName='Apellido obligatorio'
-            formIsValid=false;
+            // formIsValid=false;
         }
-
         
         if(!formData.country){
             newErrors.country='País obligatorio'
-            formIsValid=false;
+            // formIsValid=false;
         }
 
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if(!formData.email || !emailRegex.test(formData.email)){
             newErrors.email = "Debe ingresar un correo válido";
-            formIsValid=false;
+            // formIsValid=false;
         }
 
         if (!formData.password) {
             newErrors.password = "La contraseña es obligatoria";
-            formIsValid = false;
+            // formIsValid = false;
         } else if (formData.password.length < 6) {
             newErrors.password = "La contraseña debe tener al menos 6 caracteres";
-            formIsValid = false;
+            // formIsValid = false;
         }
 
         if (formData.confirmPassword !== formData.password) {
             newErrors.password = "Las contraseñas no coinciden";
-            formIsValid = false;
+            // formIsValid = false;
         }
 
         setErrors(newErrors)
@@ -115,8 +125,17 @@ const Registro = () => {
             //     termAndCondition: true
             // }        
 
+            const dataTest={
+                "email": "luisjaviermezahernandez+97@gmail.com",
+                "password": "123456",
+                "lastName": "Meza",
+                "firstName": "luis",
+                "country": "Colombia",
+                "termAndCondition": true
+            }
+
             try {
-                const response=await AuthenticationServices.userRegistration(dataToSubmit)
+                const response=await AuthenticationServices.userRegistration(dataTest)
                 if(response.status!==201 || response.data.code !==200){
                     toast.error('Error creando nuevo usuario');
                     return;
@@ -137,6 +156,18 @@ const Registro = () => {
             setErrors({})
         }
     }
+
+    if(status==='loading' || status==='authenticated'){
+        return (
+            <div className='flex flex-col w-full mt-40 items-center justify-center'>            
+                <Box sx={{ display: 'flex' }}>
+                    <CircularProgress />
+                </Box>
+                <p className='text-white mt-5'>Loading...</p>
+            </div>
+        );
+    }
+
     return (
         <section className="container">
             <div className="main-container">

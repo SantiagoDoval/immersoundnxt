@@ -18,7 +18,7 @@ const columns = [
 ]
 
 const TableLibrary = ({ data }: any) => {
-    console.log(data)
+    
     const renderCell = useCallback((user:any, columnKey:React.Key) => {
         const cellValue = user[columnKey as keyof any]
 
@@ -115,7 +115,7 @@ const TableLibrary = ({ data }: any) => {
             </div>
             <NextUIProvider>
                 <div className='text-white w-full'>
-                    <Table classNames={classNames}>
+                    <Table classNames={classNames} aria-label="Library">
                         <TableHeader columns={columns}>
                             {(column) => (
                                 <TableColumn key={column.uid} align={column.uid === "state" ? "center" : "end"}>

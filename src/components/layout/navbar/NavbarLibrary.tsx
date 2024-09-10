@@ -49,7 +49,7 @@ const NavbarLibrary = () => {
                            <MenuItem className='text-white border-b-2 border-white' onClick={handleClose}>Mi perfil</MenuItem>
                         </Link>
                         <Link href={'/biblioteca'}>
-                            <MenuItem className='text-white' onClick={handleClose}>biblioteca</MenuItem>
+                            <MenuItem className='text-white' onClick={handleClose}>Biblioteca</MenuItem>
                         </Link>
                         <Link href={''}>
                             <MenuItem className='text-white' onClick={handleClose}>Planes</MenuItem>
