@@ -47,7 +47,7 @@ const ForgotPassword = ({ setRecoveryPassword }: any) => {
                 onChange={(e) => setEmail(e.target.value)} />
             <button onClick={handleRecoveryPassword} className="btn-light">Enviar</button>
             <Toaster />
-            <p onClick={() => setRecoveryPassword(prev => !prev)} className="p-link">Iniciar sesión</p>
+            <p onClick={() => setRecoveryPassword((prev:boolean) => !prev)} className="p-link">Iniciar sesión</p>
 
         </>
     )

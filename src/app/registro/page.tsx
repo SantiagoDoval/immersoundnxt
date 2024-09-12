@@ -112,7 +112,16 @@ const Registro = () => {
 
         if(validateForm()){
 
-            const {confirmPassword,...dataToSubmit}:dataToSubmit=formData;
+            const dataToSubmit: dataToSubmit = {
+                firstName: formData.firstName,
+                lastName: formData.lastName,
+                email: formData.email,
+                password: formData.password,
+                country: formData.country,
+                termAndCondition: true,
+            };
+
+            // const {confirmPassword,...dataToSubmit}:dataToSubmit=formData;
 
             setSubmittedData([...submittedData,dataToSubmit])
             
@@ -135,7 +144,7 @@ const Registro = () => {
             }
 
             try {
-                const response=await AuthenticationServices.userRegistration(dataTest)
+                const response=await AuthenticationServices.userRegistration(dataToSubmit)
                 if(response.status!==201 || response.data.code !==200){
                     toast.error('Error creando nuevo usuario');
                     return;

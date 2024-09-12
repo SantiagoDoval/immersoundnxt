@@ -1,7 +1,9 @@
 import { AuthenticationServices } from '@/services/authentication/authentication.services';
 import CredentialsProvider from 'next-auth/providers/credentials';
+import { NextAuthOptions, Session } from "next-auth";
+import { JWT } from "next-auth/jwt";
 
-const authOptions={
+const authOptions:NextAuthOptions={
     providers:[
         CredentialsProvider({
             name:"Credentials",
@@ -64,7 +66,7 @@ const authOptions={
         }
         return token;
       },
-      async session({ session, token }:any) {
+      async session({ session, token }: { session: any; token: JWT }) {
         // Añade el token a la sesión para usarlo en el cliente
         session.token = token.token;
         return session;
