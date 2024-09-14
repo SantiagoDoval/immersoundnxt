@@ -9,6 +9,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { useState } from 'react';
 import Link from 'next/link';
 import { signOut } from 'next-auth/react';
+import LanguageSwitcher from '@/components/languageSwitcher/LanguageSwitcher ';
 
 const NavbarLibrary = () => {
 
@@ -32,6 +33,7 @@ const NavbarLibrary = () => {
                             Usuario
                         </p>
                     </Button>
+                    {/* <LanguageSwitcher /> */}
                     <Menu id="basic-menu"
                         anchorEl={anchorEl}
                         open={open}
@@ -46,16 +48,16 @@ const NavbarLibrary = () => {
                         }}
                     >
                         <Link href={'/perfil'}>
-                           <MenuItem className='text-white border-b-2 border-white' onClick={handleClose}>Mi perfil</MenuItem>
+                           <MenuItem className='!text-white border-b-2 border-white' onClick={handleClose}>Mi perfil</MenuItem>
                         </Link>
                         <Link href={'/biblioteca'}>
-                            <MenuItem className='text-white' onClick={handleClose}>Biblioteca</MenuItem>
+                            <MenuItem className='!text-white' onClick={handleClose}>Biblioteca</MenuItem>
                         </Link>
                         <Link href={''}>
-                            <MenuItem className='text-white' onClick={handleClose}>Planes</MenuItem>
+                            <MenuItem className='!text-white' onClick={handleClose}>Planes</MenuItem>
                         </Link>
                         <button onClick={() => signOut({ callbackUrl: '/login' })}>
-                            <MenuItem className='text-white' onClick={handleClose}>Cerrar sesión</MenuItem>
+                            <MenuItem className='!text-white' onClick={handleClose}>Cerrar sesión</MenuItem>
                         </button>
                     </Menu>
                 </div>
