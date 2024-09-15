@@ -1,0 +1,18 @@
+{
+    "page":{
+        "login":{
+            "title":"Iniciar sesión",
+            "password":"Contraseña",
+            "forgotPassword":"Olvide mi contraseña",
+            "newUser":"Soy nuevo",
+            "login":"Iniciar Sesión",
+            "loginGoogle":"Continuar con Google",
+            "loginFacebook":"Continuar con Facebook",
+            "tandcDescription":"Al hacer click en pagar estas aceptando los",
+            "tandc":"términos y condiciones"
+        },
+        "library":{
+            "description":"Ya puedes empezar a subir tus archivos de audio, si no estás seguro de como empezar puedes ver nuestro tutorial aquí"
+        }
+    }
+}

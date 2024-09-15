@@ -7,7 +7,10 @@ import NavbarLibrary from './NavbarLibrary';
 const Header = () => {
     const path=usePathname();
 
-    if(path==='/login' || path==='/registro' || path==='/carrito'){
+    const validPaths = ['/login', '/registro', '/carrito'];    
+    const adjustedPath = path.replace(/^\/(es|en)/, '');
+
+    if(validPaths.includes(adjustedPath)){
         return <Navbar />
     }
     

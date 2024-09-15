@@ -1,0 +1,18 @@
+{
+    "page":{
+        "login": {
+            "title": "Log in",
+            "password": "Password",
+            "forgotPassword": "I forgot my password",
+            "newUser": "I'm new",
+            "login": "Login",
+            "loginGoogle":"Log in with Google",
+            "loginFacebook":"Log in with Facebook",
+            "tandcDescription": "By clicking on pay, you are agreeing to the",
+            "tandc": "terms and conditions"
+        },
+        "library":{
+            "description":"You can now start uploading your audio files, if you are not sure how to start you can see our tutorial here"
+        }
+    }
+}

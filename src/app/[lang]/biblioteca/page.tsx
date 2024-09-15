@@ -5,6 +5,9 @@ import './biblioteca.scss'
 import bibliotecaTitle from '@/assets/bibliotecaTitle.png'
 import FirstSongUpload from '@/components/firstSongUpload/FirstSongUpload';
 import TableLibrary from '@/components/tableLibrary/TableLibrary';
+import { Locale } from '../../../../i18n.config';
+import { useEffect, useState } from 'react';
+import { getDictionary } from '@/lib/dictionary';
 
 const data=[
   {
@@ -52,7 +55,22 @@ const data=[
 
 const data1=[]
 
-const Biblioteca = () => {
+const Biblioteca = ({params:{lang}}:{params:{lang:Locale}}) => {
+  
+  const [login, setPage] = useState<any>(null); 
+
+  useEffect(()=>{
+    const getLenguaje=async()=>{
+        try {
+            const { page } = await getDictionary(lang);
+            setPage(page);                 
+        } catch (error) {
+            console.error('Error fetching data:', error);                
+        }
+    }        
+    getLenguaje() 
+  },)
+  
 
   return (
                  
@@ -60,7 +78,7 @@ const Biblioteca = () => {
           <div className="library-container">
               <Image className="image-title-section" src={bibliotecaTitle} width={520} height={300} alt="title" />
               {(data1.length===0) ? (
-                <FirstSongUpload />
+                <FirstSongUpload lang={login} />
               ):(
                 <div className='w-full'>
                   <TableLibrary data={data} />
