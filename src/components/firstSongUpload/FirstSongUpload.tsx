@@ -7,8 +7,12 @@ import CloseIcon from '@mui/icons-material/Close';
 import { TextField } from '@mui/material';
 import Image from 'next/image';
 import UploadSongButton from '../uploadSongButton/UploadSongButton';
+import { Locale } from '../../../i18n.config';
+import { getDictionary } from '@/lib/dictionary';
 
-const FirstSongUpload = () => {
+const FirstSongUpload = ({lang}:{lang:any}) => {
+
+    console.log("🚀 ~ FirstSongUpload ~ lang:", lang) 
     
     const [openTutorial, setOpenTutorial] = useState(false);
 
@@ -22,7 +26,7 @@ const FirstSongUpload = () => {
 
     return (
         <>
-            <p className="p-info text-white !text-xl">Ya puedes empezar a subir tus archivos de audio, si no estás seguro de como empezar puedes ver nuestro tutorial aquí</p>
+            <p className="p-info text-white !text-xl">{'test'}</p>
             <div className="upload-container !py-20 text-white">
                 
                 <UploadSongButton />

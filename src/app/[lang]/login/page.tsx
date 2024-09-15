@@ -10,17 +10,32 @@ import ForgotPassword from '@/components/forgotPassword/ForgotPassword'
 import { useRouter } from 'next/navigation'
 import { signIn, useSession } from 'next-auth/react';
 import toast, { Toaster } from 'react-hot-toast'
-import { getServerSession } from 'next-auth'
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
+import { Locale } from '../../../../i18n.config'
+import { getDictionary } from '@/lib/dictionary'
 
+const Login = ({params:{lang}}:{params:{lang:Locale}}) => {   
 
-const Login = () => {
+    const [t, setT] = useState<any>(null);    
+    
+    useEffect(()=>{
+        const getLenguaje=async()=>{
+            try {
+                const { page } = await getDictionary(lang);
+                const {login}=page;
+                setT(login);                 
+            } catch (error) {
+                console.error('Error fetching data:', error);                
+            }
+        }        
+        getLenguaje() 
+    },[])
+    
 
     const router=useRouter();
 
     const { data: session, status } = useSession();
-    console.log("🚀 ~ Login ~ session:", session)
 
     useEffect(() => {        
 		if (status === 'authenticated') {
@@ -45,11 +60,8 @@ const Login = () => {
         if (result?.error) {
             toast.error('Usuario y contraseña incorrectas')
             return;
-        } 
-        
+        }        
         router.push("/carrito"); 
-        
-        // router.push("/carrito"); 
     }
 
     
@@ -62,8 +74,7 @@ const Login = () => {
                     <p className='text-white mt-5'>Loading...</p>
                 </div>
             );
-        }
-    
+        }    
 
     return (
         <section className="container">
@@ -72,7 +83,7 @@ const Login = () => {
                 <div className="login-container input-white flex flex-col items-center justify-center content-center">
                     {!recoveryPassword ? (
                         <>
-                            <h3 className='text-white my-3 text-xl'>Iniciar sesión</h3>
+                            <h3 className='text-white my-3 text-xl'>{t.title}</h3>
                             <div className='flex flex-col gap-4 w-10/12'>
                                 <TextField
                                     className='w-full'
@@ -85,7 +96,7 @@ const Login = () => {
                                      />
                                 <TextField
                                     className='w-full'
-                                    label="Contraseña"
+                                    label={`${t.password}`}
                                     variant="outlined"
                                     sx={inputStyle} 
                                     type='password'
@@ -94,16 +105,16 @@ const Login = () => {
                                     /> 
                                 <Toaster />                                   
                             </div>
-                            <p onClick={() => setRecoveryPassword(prev => !prev)} className="p-link">Olvide mi contraseña</p>
-                            <button className="btn-light">continuar con google</button>
-                            <button className="btn-light">continuar con facebook</button>
+                            <p onClick={() => setRecoveryPassword(prev => !prev)} className="p-link">{t.forgotPassword}</p>
+                            <button className="btn-light">{t.loginGoogle}</button>
+                            <button className="btn-light">{t.loginFacebook}</button>
                             <Link href={'/registro'} >
-                                <p className="p-link">Soy nuevo</p>
+                                <p className="p-link">{t.newUser}</p>
                             </Link>
                             <button onClick={handleLogin} className="btn-light">Iniciar sesión</button>
 
-                            <p className="p-info text-white">Al hacer click en pagar estas aceptando los </p>
-                            <p className="p-link-white">términos y condiciones</p>
+                            <p className="p-info text-white">{t.tandcDescription}</p>
+                            <p className="p-link-white">{t.tandc}</p>
                         </>
                     ) : (
                         <ForgotPassword setRecoveryPassword={setRecoveryPassword} />
