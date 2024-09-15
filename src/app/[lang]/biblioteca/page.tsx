@@ -57,20 +57,21 @@ const data1=[]
 
 const Biblioteca = ({params:{lang}}:{params:{lang:Locale}}) => {
   
-  const [login, setPage] = useState<any>(null); 
-
+  const [page, setPage] = useState<any>(null); 
+  
   useEffect(()=>{
     const getLenguaje=async()=>{
-        try {
-            const { page } = await getDictionary(lang);
-            setPage(page);                 
-        } catch (error) {
-            console.error('Error fetching data:', error);                
-        }
+      try {
+        const { page } = await getDictionary(lang);
+        setPage(page);                 
+      } catch (error) {
+        console.error('Error fetching data:', error);                
+      }
     }        
     getLenguaje() 
-  },)
+  },[lang])
   
+  console.log("🚀 ~ Biblioteca ~ page:", page)
 
   return (
                  
@@ -78,7 +79,7 @@ const Biblioteca = ({params:{lang}}:{params:{lang:Locale}}) => {
           <div className="library-container">
               <Image className="image-title-section" src={bibliotecaTitle} width={520} height={300} alt="title" />
               {(data1.length===0) ? (
-                <FirstSongUpload lang={login} />
+                <FirstSongUpload lang={page} />
               ):(
                 <div className='w-full'>
                   <TableLibrary data={data} />

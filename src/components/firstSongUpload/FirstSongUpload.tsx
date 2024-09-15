@@ -12,7 +12,8 @@ import { getDictionary } from '@/lib/dictionary';
 
 const FirstSongUpload = ({lang}:{lang:any}) => {
 
-    console.log("🚀 ~ FirstSongUpload ~ lang:", lang) 
+
+    
     
     const [openTutorial, setOpenTutorial] = useState(false);
 
@@ -26,7 +27,7 @@ const FirstSongUpload = ({lang}:{lang:any}) => {
 
     return (
         <>
-            <p className="p-info text-white !text-xl">{'test'}</p>
+            <p className="p-info text-white !text-xl">{lang?.library.description}</p>
             <div className="upload-container !py-20 text-white">
                 
                 <UploadSongButton />

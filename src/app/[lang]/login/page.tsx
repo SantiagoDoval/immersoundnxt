@@ -30,7 +30,7 @@ const Login = ({params:{lang}}:{params:{lang:Locale}}) => {
             }
         }        
         getLenguaje() 
-    },[])
+    },[lang])
     
 
     const router=useRouter();
@@ -83,7 +83,7 @@ const Login = ({params:{lang}}:{params:{lang:Locale}}) => {
                 <div className="login-container input-white flex flex-col items-center justify-center content-center">
                     {!recoveryPassword ? (
                         <>
-                            <h3 className='text-white my-3 text-xl'>{t.title}</h3>
+                            <h3 className='text-white my-3 text-xl'>{t?.title}</h3>
                             <div className='flex flex-col gap-4 w-10/12'>
                                 <TextField
                                     className='w-full'
@@ -92,29 +92,29 @@ const Login = ({params:{lang}}:{params:{lang:Locale}}) => {
                                     type='email'
                                     sx={inputStyle}
                                     value={formData.email}
-                                    onChange={(e)=>setFormData({...formData,email:e.target.value})}
+                                    onChange={(e)=>setFormData({...formData,email:e.target?.value})}
                                      />
                                 <TextField
                                     className='w-full'
-                                    label={`${t.password}`}
+                                    label={`${t?.password}`}
                                     variant="outlined"
                                     sx={inputStyle} 
                                     type='password'
                                     value={formData.password}
-                                    onChange={(e)=>setFormData({...formData,password:e.target.value})}
+                                    onChange={(e)=>setFormData({...formData,password:e.target?.value})}
                                     /> 
                                 <Toaster />                                   
                             </div>
-                            <p onClick={() => setRecoveryPassword(prev => !prev)} className="p-link">{t.forgotPassword}</p>
-                            <button className="btn-light">{t.loginGoogle}</button>
-                            <button className="btn-light">{t.loginFacebook}</button>
+                            <p onClick={() => setRecoveryPassword(prev => !prev)} className="p-link">{t?.forgotPassword}</p>
+                            <button className="btn-light">{t?.loginGoogle}</button>
+                            <button className="btn-light">{t?.loginFacebook}</button>
                             <Link href={'/registro'} >
-                                <p className="p-link">{t.newUser}</p>
+                                <p className="p-link">{t?.newUser}</p>
                             </Link>
                             <button onClick={handleLogin} className="btn-light">Iniciar sesión</button>
 
-                            <p className="p-info text-white">{t.tandcDescription}</p>
-                            <p className="p-link-white">{t.tandc}</p>
+                            <p className="p-info text-white">{t?.tandcDescription}</p>
+                            <p className="p-link-white">{t?.tandc}</p>
                         </>
                     ) : (
                         <ForgotPassword setRecoveryPassword={setRecoveryPassword} />
