@@ -9,15 +9,19 @@ import CloseIcon from '@mui/icons-material/Close';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import UploadSongButton from '../uploadSongButton/UploadSongButton';
 import Link from 'next/link';
+import useGetText from '@/hooks/useGetText';
 
-const columns = [
-    { name: "Nombre", uid: 'name' },
-    { name: "Duración", uid: 'duration' },
-    { name: "Creación", uid: 'creation' },
-    { name: "Estado", uid: 'state' },
-]
 
 const TableLibrary = ({ data }: any) => {
+    
+    const {t,lang}=useGetText('component','table')
+    
+    const columns = [
+        { name: t?.name, uid: 'name' },
+        { name: t?.duration, uid: 'duration' },
+        { name: t?.creation, uid: 'creation' },
+        { name: t?.state, uid: 'state' },
+    ]
     
     const renderCell = useCallback((user:any, columnKey:React.Key) => {
         const cellValue = user[columnKey as keyof any]
@@ -67,7 +71,7 @@ const TableLibrary = ({ data }: any) => {
                         </Tooltip>
                         <Tooltip content="Editar" className='text-white bg-[#8F03E0] p-1 rounded-md'>
                             <span className="text-md w-7 h-7 text-default-400 cursor-pointer active:opacity-50 bg-[#8F03E0] rounded-full">
-                                <Link href={'/estado'}>
+                                <Link href={`/${lang}/estado`}>
                                     <SettingsIcon className='w-5 h-5' />
                                 </Link>
                             </span>
@@ -88,18 +92,9 @@ const TableLibrary = ({ data }: any) => {
   const classNames = React.useMemo(
     () => ({
       wrapper: ["w-full","rounded-md"],
-      th: ["bg-[#4045B2]", "py-3", "font-normal", ""],
+      th: ["bg-[#4045B2]", "py-3", "font-normal"],
       tr: ["!py-3","rounded-lg"],
-      td: [ "border-b-indigo-500"
-        // // changing the rows border radius
-        // // first
-        // "group-data-[first=true]:first:before:rounded-none",
-        // "group-data-[first=true]:last:before:rounded-none",
-        // // middle
-        // "group-data-[middle=true]:before:rounded-none",
-        // // last
-        // "group-data-[last=true]:first:before:rounded-none",
-        // "group-data-[last=true]:last:before:rounded-none",
+      td: [ "border-b-indigo-500"      
       ],
     }),
     [],
@@ -108,7 +103,7 @@ const TableLibrary = ({ data }: any) => {
     return (
         <>
             <div className='text-white flex mb-5 items-center'>
-                <p>Canciones disponibles: 1/3</p>
+                <p>{t?.songAvailables}: 1/3</p>
                 <div className='ml-3'>
                     <UploadSongButton />
                 </div>
@@ -118,17 +113,19 @@ const TableLibrary = ({ data }: any) => {
                     <Table classNames={classNames} aria-label="Library">
                         <TableHeader columns={columns}>
                             {(column) => (
-                                <TableColumn key={column.uid} align={column.uid === "state" ? "center" : "end"}>
+                                <TableColumn key={column.uid} align={column.uid === "state" ? "center" : "end"} className={(column.uid==='creation')?'hidden md:flex justify-center':''}>
                                     {column.name}
                                 </TableColumn>
                             )}
                         </TableHeader>
                         <TableBody items={data}>
-                            {(item) => (
-                                <TableRow key={data.id}>
-                                    {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
+                            {(item) => {
+                                return   <TableRow key={data.id} >                                    
+                                    {(columnKey) =>{                             
+                                        
+                                        return <TableCell className={(columnKey==='creation' )?'hidden md:flex  justify-center':''}>{renderCell(item, columnKey)}</TableCell>}}
                                 </TableRow>
-                            )}
+                            }}
                         </TableBody>
 
                     </Table>

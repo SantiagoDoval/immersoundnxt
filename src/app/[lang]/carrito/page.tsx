@@ -12,8 +12,11 @@ import { AuthenticationServices } from "@/services/authentication/authentication
 import { PaymentServices } from "@/services/payment/payment.services"
 import toast, { Toaster } from "react-hot-toast"
 import { useRouter } from "next/navigation"
+import useGetText from "@/hooks/useGetText"
+import { RedirectTo } from "@/utils/redirectTo"
 
 const Carrito = () => {
+    const {t,lang}=useGetText('page','shoppingCart')
     const route=useRouter();
     const [toggle, setToggle] = useState(false)
 
@@ -43,7 +46,7 @@ const Carrito = () => {
             }
             if (response.status === 200 && response.data.code === 200) {                
                 window.open(response.data.data.redirecTo, '_blank', 'noopener,noreferrer');                
-                route.push('/biblioteca')
+                route.push(`/${lang}/biblioteca`)
             }
         } catch (error) {
             toast.error('Algo salio mal');
@@ -55,7 +58,7 @@ const Carrito = () => {
                 <Image className="logo" src={logo} width={510} height={310} alt="Logo" />
                 {!toggle ?
                     (<div className="shopping-container">
-                        <h3 className="text-white my-3 text-xl">Productos en tu carrito</h3>
+                        <h3 className="text-white my-3 text-xl">{t?.title}</h3>
                         <div className="blue-card-1">
                             <div className="select-cont">
                                 <select className="select-style">
@@ -65,7 +68,7 @@ const Carrito = () => {
                                     <option value="4">4</option>
                                 </select>
                             </div>
-                            <div><p>Canción</p></div>
+                            <div><p>{t?.song}</p></div>
                             <div>
                                 <div className="select-cont">
                                     <select className="select-style">
@@ -77,35 +80,35 @@ const Carrito = () => {
                             <div><p>$49</p></div>
                         </div>
                         <div className="cupon-cont">
-                            <p className="text-white my-1">¿Tienes un cupón?</p>
-                            <input type="text" placeholder="ingresa cupón" className="input-form-style !h-7" />
+                            <p className="text-white my-1">{t?.cuponText}</p>
+                            <input type="text" placeholder={t?.cupon}className="input-form-style !h-7" />
                         </div>
                         <div className="blue-card-2 gap-3">
                             <div className="info-card">
-                                <p>Cupón</p>
+                                <p>{t?.cupon}</p>
                                 <p>-$40</p>
                             </div>
                             <div className="info-card total">
-                                <p>Total</p>
+                                <p>{t?.total}</p>
                                 <p>$9</p>
                             </div>
                         </div>
-                        <p className="p-info text-white">Escoge tu método de pago</p>
+                        <p className="p-info text-white">{t?.payMethod}</p>
                         <div className="flex mx-auto items-center justify-center w-14 my-5">
                             {/* <Image src={paypal} width={236} height={236} alt="" /> */}
                             <Image src={stripe} width={236} height={236} alt="" />
                         </div>
-                        <button onClick={handlePayment} className="btn-blue">Pagar</button>
+                        <button onClick={handlePayment} className="btn-blue">{t?.pay}</button>
                         <Toaster />
-                        <p className="p-info text-white">Al hacer click en pagar estas aceptando los </p>
-                        <p className="p-link-white">términos y condiciones</p>
+                        <p className="p-info text-white">{t?.tandcDescription} </p>
+                        <p className="p-link-white">{t?.tandc}</p>
                     </div>)
                     :
                     (<div className="success-container">
                         <Image className="check-icon" width={300} height={300} src={checkCircle} alt="check" />
                         <h2 className="text-white">Tu pago ha sido exitoso!</h2>
                         <p className="p-info text-white !my-5">(Ya puedes empezar a subir tus archivos de audio...)</p>
-                        <Link href={'/biblioteca'}>
+                        <Link href={RedirectTo('biblioteca')}>
                             <button className="btn-blue">Empezar</button>
                         </Link>
                     </div>)

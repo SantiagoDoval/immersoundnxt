@@ -5,6 +5,7 @@ import Navbar from "@/components/layout/navbar/Navbar";
 import Header from "@/components/layout/navbar/Header";
 import SessionProviderWrapper from "@/components/sessionProvider/SessionProviderWrapper";
 import { i18n, Locale } from "../../../i18n.config";
+import { LanguageProvider } from "@/context/LanguageContext";
 
 
 const monserrat = Montserrat({ subsets: ["latin"] });
@@ -26,11 +27,14 @@ export default function RootLayout({
   params:{lang:Locale}  
 }>) {
   return (
+
     <html lang="es">
-        <body className={monserrat.className}>
+        <body className={monserrat.className}>          
           <SessionProviderWrapper>
-            <Header />
-            {children}
+            <LanguageProvider initialLang={params}>
+              <Header />
+              {children}
+            </LanguageProvider>
           </SessionProviderWrapper>
         </body>
       </html>

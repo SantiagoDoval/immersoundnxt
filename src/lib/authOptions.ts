@@ -12,7 +12,6 @@ const authOptions:NextAuthOptions={
                 password: { label: "Password", type: "password" }
               },
               async authorize(credentials, req) {
-                console.log(credentials,'esta')
                 const token=generateToken('1')
 
                 if(credentials?.email==='luisjaviermezahernandez@gmail.com' && credentials.password==='123456'){

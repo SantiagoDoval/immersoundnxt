@@ -10,7 +10,7 @@ import UploadSongButton from '../uploadSongButton/UploadSongButton';
 import { Locale } from '../../../i18n.config';
 import { getDictionary } from '@/lib/dictionary';
 
-const FirstSongUpload = ({lang}:{lang:any}) => {
+const FirstSongUpload = () => {
 
 
     
@@ -27,7 +27,7 @@ const FirstSongUpload = ({lang}:{lang:any}) => {
 
     return (
         <>
-            <p className="p-info text-white !text-xl">{lang?.library.description}</p>
+            <p className="p-info text-white !text-xl">{''}</p>
             <div className="upload-container !py-20 text-white">
                 
                 <UploadSongButton />

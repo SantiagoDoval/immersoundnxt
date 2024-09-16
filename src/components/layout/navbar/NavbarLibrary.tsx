@@ -9,9 +9,13 @@ import MenuItem from '@mui/material/MenuItem';
 import { useState } from 'react';
 import Link from 'next/link';
 import { signOut } from 'next-auth/react';
-import LanguageSwitcher from '@/components/languageSwitcher/LanguageSwitcher ';
+import SwitchLanguage from '@/components/switchLanguage/SwitchLanguage';
+import useGetText from '@/hooks/useGetText';
+import { RedirectTo } from '@/utils/redirectTo';
 
 const NavbarLibrary = () => {
+
+    const {t}=useGetText('component','menu')
 
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
@@ -26,11 +30,12 @@ const NavbarLibrary = () => {
             <Image src={logo} width={75} height={75} alt="Logo" className={style.logo} />
 
             <div className={style.navbar_library_right}>
-                <p className={style.help}>Ayuda</p>
+                <SwitchLanguage />
+                <p className={style.help}>{t?.help}</p>
                 <div>
                     <Button id="basic-button" onClick={handleClick}>
                         <p className="btn-blue">
-                            Usuario
+                        {t?.users}
                         </p>
                     </Button>
                     {/* <LanguageSwitcher /> */}
@@ -47,17 +52,17 @@ const NavbarLibrary = () => {
                             }
                         }}
                     >
-                        <Link href={'/perfil'}>
-                           <MenuItem className='!text-white border-b-2 border-white' onClick={handleClose}>Mi perfil</MenuItem>
+                        <Link href={RedirectTo('perfil')}>
+                           <MenuItem className='!text-white border-b-2 border-white' onClick={handleClose}>{t?.myProfile}</MenuItem>
                         </Link>
-                        <Link href={'/biblioteca'}>
-                            <MenuItem className='!text-white' onClick={handleClose}>Biblioteca</MenuItem>
+                        <Link href={RedirectTo('biblioteca')}>
+                            <MenuItem className='!text-white' onClick={handleClose}>{t?.library}</MenuItem>
                         </Link>
                         <Link href={''}>
-                            <MenuItem className='!text-white' onClick={handleClose}>Planes</MenuItem>
+                            <MenuItem className='!text-white' onClick={handleClose}>{t?.plans}</MenuItem>
                         </Link>
                         <button onClick={() => signOut({ callbackUrl: '/login' })}>
-                            <MenuItem className='!text-white' onClick={handleClose}>Cerrar sesión</MenuItem>
+                            <MenuItem className='!text-white' onClick={handleClose}>{t?.singOut}</MenuItem>
                         </button>
                     </Menu>
                 </div>

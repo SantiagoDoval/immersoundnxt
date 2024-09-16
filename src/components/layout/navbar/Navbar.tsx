@@ -1,19 +1,19 @@
 'use client'
 
+import SwitchLanguage from '@/components/switchLanguage/SwitchLanguage';
 import style from './navbar.module.scss'
 import MenuIcon from '@mui/icons-material/Menu';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Link from 'next/link';
-
-import { usePathname } from 'next/navigation'
 import { useState } from 'react';
-import { i18n } from '../../../../i18n.config';
+import useGetText from '@/hooks/useGetText';
+import { RedirectTo } from '@/utils/redirectTo';
 
 const Navbar = () => {
 
-    const pathName=usePathname();
+    const {t}=useGetText('component','menu')
 
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
@@ -24,44 +24,24 @@ const Navbar = () => {
       setAnchorEl(null);
     };
 
-    const redirectedPathName = (locale: string) => {
-      if (!pathName) return '/'
-      const segments = pathName.split('/')
-      segments[1] = locale
-      return segments.join('/')
-    }
-
     return (
         <section className="container">
             <div className='hidden md:flex w-full'>
                 <div className={`${style.navbar}`}>
-                    <Link href={'/'}>
-                      <p className={`${style.left_navbar}`}>Inicio</p>
+                    <Link href={RedirectTo('')}>
+                      <p className={`${style.left_navbar}`}>{t?.home}</p>
                     </Link>
                     <div className={`${style.right_navbar}`}>
-                        <p>Ayuda</p>
+                        <p>{t?.help}</p>
                         {/* <p>Es</p> */}
-                        <ul className='flex gap-x-3 items-center'>
-                        {i18n.locales.map(locale => {
-                          return (
-                            <li key={locale}>
-                              <Link
-                                href={redirectedPathName(locale)}
-                                className='text-white'
-                              >
-                                {locale}
-                              </Link>
-                            </li>
-                          )
-                        })}
-                      </ul>
-                        <button className="btn-blue">Usuarios</button>
+                        <SwitchLanguage />
+                        <button className="btn-blue">{t?.users}</button>
                     </div>
                 </div>
             </div>
             <div className='flex md:hidden flex-row justify-between h-[120px] items-center uppercase'>
-              <Link href={'/'}>
-                <p className='text-white'>Inicio</p>
+              <Link href={RedirectTo('')}>
+                <p className='text-white'>{t?.home}</p>
               </Link>
                 <Button id="basic-button" onClick={handleClick}>
                     <MenuIcon sx={{ color:'#fff'}} />
@@ -79,8 +59,8 @@ const Navbar = () => {
                         }
                       }}
                     >
-                        <MenuItem className='text-white border-b-2 border-white' onClick={handleClose}>Usuarios</MenuItem>
-                        <MenuItem className='text-white' onClick={handleClose}>Ayuda</MenuItem>                        
+                        <MenuItem className='text-white border-b-2 border-white' onClick={handleClose}>{t?.users}</MenuItem>
+                        <MenuItem className='text-white' onClick={handleClose}>{t?.help}</MenuItem>                        
                 </Menu>
             </div>
         </section >

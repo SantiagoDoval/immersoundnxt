@@ -10,6 +10,8 @@ import { inputStyle } from '@/utils/inputStyle'
 import Link from 'next/link'
 import toast from 'react-hot-toast'
 import { useSession } from 'next-auth/react'
+import useGetText from '@/hooks/useGetText'
+import { RedirectTo } from '@/utils/redirectTo'
 
 interface formData{
     firstName:string,
@@ -25,6 +27,8 @@ type dataToSubmit=Omit<formData,'confirmPassword'>
 
 const Registro = () => {
 
+    const {t,lang}=useGetText('page','register'); 
+
     const router=useRouter();   
 
     const { data: session, status } = useSession();
@@ -33,7 +37,7 @@ const Registro = () => {
 
     useEffect(() => {        
 		if (status === 'authenticated') {
-			router.push('/biblioteca');
+			router.push(`/${lang}/biblioteca`);
 		}
 	}, [status]);
 
@@ -182,11 +186,11 @@ const Registro = () => {
             <div className="main-container">
                 <Image className="logo" width={512} height={330} src={logo} alt="Logo" />
                 <form onSubmit={onSubmit} className="singin-container input-white flex flex-col w-full items-center justify-center">
-                    <h3 className='text-white my-3 text-xl'>Bienvenido a Immersound</h3>
+                    <h3 className='text-white my-3 text-xl'>{t?.title}</h3>
                     <div className="row-input-2 my-2">
                         <TextField
-                            className='w-full'                             
-                            label="Nombre" 
+                            className='w-full'
+                            label={t?.nameF}
                             type='text'
                             variant="outlined" 
                             sx={inputStyle}
@@ -197,7 +201,7 @@ const Registro = () => {
                             /> 
                         <TextField 
                             className='w-full'  
-                            label="Apellido" 
+                            label={t?.lastnameF}
                             type='text'
                             variant="outlined" 
                             sx={inputStyle}
@@ -221,7 +225,7 @@ const Registro = () => {
                                 /> 
                         <TextField 
                                 className='w-full'  
-                                label="Contraseña" 
+                                label={t?.password}
                                 type='password'
                                 variant="outlined" 
                                 sx={inputStyle}
@@ -234,7 +238,7 @@ const Registro = () => {
                     <div className="row-input-2 my-2">
                     <TextField 
                                 className='w-full'  
-                                label="Pais" 
+                                label={t?.country} 
                                 type='text'
                                 variant="outlined" 
                                 sx={inputStyle}
@@ -245,7 +249,7 @@ const Registro = () => {
                                 /> 
                         <TextField 
                                 className='w-full'  
-                                label="Confirmar contraseña" 
+                                label={t?.confirmPassword} 
                                 type='password'
                                 variant="outlined" 
                                 sx={inputStyle}
@@ -255,15 +259,15 @@ const Registro = () => {
                                 helperText={errors.confirmPassword}/>                        
                     </div>
                     <div className="row-input-2 w-11/12 self-center mt-5">
-                        <button className="btn-light">continuar con google</button>
-                        <button className="btn-light">continuar con facebook</button>
+                        <button className="btn-light">{t?.loginGoogle}</button>
+                        <button className="btn-light">{t?.loginFacebook}</button>
                     </div>
-                    <Link href={'/login'}>
-                        <p className="p-link">¿Ya tienes un cuenta?</p>
+                    <Link href={RedirectTo('login')}>
+                        <p className="p-link">{t?.haveAccount}</p>
                     </Link> 
-                    <button className="btn-blue" type='submit' > registrarme</button >
-                    <p className="p-info text-white">Al hacer click en pagar estas aceptando los </p>
-                    <p className="p-link-white">términos y condiciones</p>
+                    <button className="btn-blue" type='submit' >{t?.register}</button >
+                    <p className="p-info text-white">{t?.tandcDescription}</p>
+                    <p className="p-link-white">{t?.tandc}</p>
                 </form >
             </div>
         </section>

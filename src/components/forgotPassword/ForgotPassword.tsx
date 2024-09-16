@@ -1,5 +1,6 @@
 'use client'
 
+import useGetText from "@/hooks/useGetText"
 import { AuthenticationServices } from "@/services/authentication/authentication.services"
 import { inputStyle } from "@/utils/inputStyle"
 import { TextField } from "@mui/material"
@@ -7,6 +8,8 @@ import { useState } from "react"
 import toast, { Toaster } from "react-hot-toast"
 
 const ForgotPassword = ({ setRecoveryPassword }: any) => {
+
+    const {t}=useGetText('page','login');   
 
     const [email,setEmail]=useState<string>('')
 
@@ -36,8 +39,8 @@ const ForgotPassword = ({ setRecoveryPassword }: any) => {
     }
     return (
         <>
-            <h3 className='text-white my-3 text-xl'>¿Olvidaste tu contraseña?</h3>
-            <p className="p-info text-white !mb-5">Escribe el correo electrónico con el cuál te registraste y te enviaremos las instrucciones de restablecimiento.</p>
+            <h3 className='text-white my-3 text-xl'>{t?.titleForgot}</h3>
+            <p className="p-info text-white !mb-5">{t?.descriptionForgot}</p>
             <TextField
                 className='w-full !mb-5'
                 label="Email"
@@ -45,9 +48,9 @@ const ForgotPassword = ({ setRecoveryPassword }: any) => {
                 sx={inputStyle}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)} />
-            <button onClick={handleRecoveryPassword} className="btn-light">Enviar</button>
+            <button onClick={handleRecoveryPassword} className="btn-light">{t?.send}</button>
             <Toaster />
-            <p onClick={() => setRecoveryPassword((prev:boolean) => !prev)} className="p-link">Iniciar sesión</p>
+            <p onClick={() => setRecoveryPassword((prev:boolean) => !prev)} className="p-link">{t?.login}</p>
 
         </>
     )

@@ -12,26 +12,14 @@ import { signIn, useSession } from 'next-auth/react';
 import toast, { Toaster } from 'react-hot-toast'
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
-import { Locale } from '../../../../i18n.config'
-import { getDictionary } from '@/lib/dictionary'
 
-const Login = ({params:{lang}}:{params:{lang:Locale}}) => {   
+import useGetText from '@/hooks/useGetText'
+import { RedirectTo } from '@/utils/redirectTo'
 
-    const [t, setT] = useState<any>(null);    
-    
-    useEffect(()=>{
-        const getLenguaje=async()=>{
-            try {
-                const { page } = await getDictionary(lang);
-                const {login}=page;
-                setT(login);                 
-            } catch (error) {
-                console.error('Error fetching data:', error);                
-            }
-        }        
-        getLenguaje() 
-    },[lang])
-    
+
+const Login = () => {
+
+    const {t,lang}=useGetText('page','login');    
 
     const router=useRouter();
 
@@ -39,7 +27,7 @@ const Login = ({params:{lang}}:{params:{lang:Locale}}) => {
 
     useEffect(() => {        
 		if (status === 'authenticated') {
-			router.push('/biblioteca');
+			router.push(`/${lang}/biblioteca`);
 		}
 	}, [status]);
 
@@ -108,10 +96,10 @@ const Login = ({params:{lang}}:{params:{lang:Locale}}) => {
                             <p onClick={() => setRecoveryPassword(prev => !prev)} className="p-link">{t?.forgotPassword}</p>
                             <button className="btn-light">{t?.loginGoogle}</button>
                             <button className="btn-light">{t?.loginFacebook}</button>
-                            <Link href={'/registro'} >
+                            <Link href={RedirectTo('registro')} >
                                 <p className="p-link">{t?.newUser}</p>
                             </Link>
-                            <button onClick={handleLogin} className="btn-light">Iniciar sesión</button>
+                            <button onClick={handleLogin} className="btn-light">{t?.login}</button>
 
                             <p className="p-info text-white">{t?.tandcDescription}</p>
                             <p className="p-link-white">{t?.tandc}</p>

@@ -9,10 +9,127 @@
             "loginGoogle":"Continuar con Google",
             "loginFacebook":"Continuar con Facebook",
             "tandcDescription":"Al hacer click en pagar estas aceptando los",
+            "tandc":"términos y condiciones",
+            "titleForgot":"¿Olvidaste tu contraseña?",
+            "descriptionForgot":"Escribe el correo electrónico con el cuál te registraste y te enviaremos las instrucciones de restablecimiento.",
+            "send":"Enviar"
+        },
+        "register":{
+            "title":"Bienvenido a Immersound",
+            "nameF":"Nombre",
+            "lastnameF":"Apellido",
+            "email":"E-mail",
+            "password":"Contraseña",
+            "country":"País",
+            "confirmPassword":"Confirmar contraseña",
+            "loginGoogle":"Continuar con Google",
+            "loginFacebook":"Continuar con Facebook",
+            "haveAccount":"¿Ya tienes cuenta?",
+            "register":"Registrarme",            
+            "tandcDescription":"Al hacer click en pagar estas aceptando los",
             "tandc":"términos y condiciones"
+
+            
         },
         "library":{
-            "description":"Ya puedes empezar a subir tus archivos de audio, si no estás seguro de como empezar puedes ver nuestro tutorial aquí"
+            "description":"Ya puedes empezar a subir tus archivos de audio, si no estás seguro de como empezar puedes ver nuestro tutorial aquí",
+            "btnAddSong":"Agregar canción",
+            "addSongDescription":"No tienes canciones. Para empezar agrega tus archivos acá:",
+            "tutorial":"Ver tutorial",
+            
+            "nameTH":"Nombre",
+            "durationTH":"Duración",
+            "creationTH":"Creación",
+            "stateTh":"Estado",
+            "downloadTt":"Descargar",
+            "settingsTt":"Editar",
+            "shareTt":"Compartir"
+        },
+        "profile":{
+            "editProfile":"Editar perfil",
+            "titleInfo":"Información general",
+            "name":"Nombre",
+            "lastname":"Apellido",
+            "country":"País",
+            "email":"Correo",
+            "save":"Guardar",
+            "currentPassword":"Contraseña actual",
+            "password":"Contraseña",
+            "newPassword":"Nueva contraseña",
+            "confirmPassword":"Confirmar contraseña",
+            "btnUpdatePassword":"Actualizar contraseña",
+            "btnEditPhoto":"Editar foto"             
+        },
+        "state":{
+            "back":"Volver",
+            "description":"Vamos a estar mezclando tu canción en vivo, conectate el dia 12 de mayo en el siguiente link!",
+            "linkDescription":"Ir a mezclar en vivo!",
+            "titleInformation":"Información",
+            "titleHistory":"Historial",
+            "nameInf":"Nombre",
+            "artistInf":"Artista",
+            "specialtyInf":"Especialidad",
+            "needSupport":"Necesito soporte",
+            "support":"Soporte",
+            "titleProgress":"Progreso",
+            "uploadMaster":"Cargar master",
+            "uploadStems":"Cargar stems",
+            "send":"Enviar"
+        },
+        "shoppingCart":{
+            "title":"Productos en tu carrito",
+            "song":"Canción",
+            "cuponText":"¿Tienes un cupón?",
+            "cupon":"Cupón",
+            "total":"Total",
+            "payMethod":"Escoge tu metodo de pago",
+            "pay":"Pagar",
+            "tandcDescription":"Al hacer click en pagar estas aceptando los",
+            "tandc":"términos y condiciones"
+        }
+    },
+    "modal":{
+        "support":{
+            "name":"Nombre",
+            "textarea":"Por favor, proporciona detalles sobre tu solicitud.",
+            "send":"Enviar"
+        },
+        "uploadSong":{
+            "title":"Subir tu canción",
+            "file":"Nombre del archivo",
+            "artist":"Artista",
+            "specialty":"Especialidad",
+            "uploadMaster":"Cargar master",
+            "uploadStems":"Cargar stems",
+            "upload":"Cargar",
+            "uploadInProcess":"Carga en progreso",
+            "errorMessage":"Lo sentimos, Se ha producido un error al cargar tu archivo. Por favor intenta nuevamente.",
+            "uploadSong":"Volver a intentar",
+            "uploadAgain":"Subir otro archivo",
+            "btnLibrary":"Ir a la biblioteca"
+        },
+        "successPay":{
+            "title":"Tu pago ha sido exitoso!",
+            "description":"(Ya puedes empezar a subir tus archivos de audio....).",
+            "send":"Enviar"
+        }
+    },
+    "component":{
+        "menu":{
+            "home":"Inicio",
+            "help":"Ayuda",
+            "users":"Usuarios",
+            "myProfile":"Mi perfil",
+            "library":"Biblioteca",
+            "plans":"Planes",
+            "singOut":"Cerrar sesión"        
+        },
+        "table":{
+            "name":"Nombre",
+            "duration":"Duración",
+            "creation":"Creación",
+            "state":"Estado",
+            "songAvailables":"Canciones disponibles"
         }
     }
 }

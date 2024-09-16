@@ -1,18 +1,132 @@
 {
-    "page":{
+    "page": {
         "login": {
             "title": "Log in",
             "password": "Password",
             "forgotPassword": "I forgot my password",
             "newUser": "I'm new",
-            "login": "Login",
-            "loginGoogle":"Log in with Google",
-            "loginFacebook":"Log in with Facebook",
+            "login": "Log In",
+            "loginGoogle": "Continue with Google",
+            "loginFacebook": "Continue with Facebook",
+            "tandcDescription": "By clicking on pay, you are agreeing to the",
+            "tandc": "terms and conditions",    "titleForgot": "Did you forget your password?",
+            "descriptionForgot": "Enter the email you registered with and we will send you reset instructions.",
+            "send": "Send"
+        },
+        "register": {
+            "title": "Welcome to Immersound",
+            "nameF": "First Name",
+            "lastnameF": "Last Name",
+            "email": "E-mail",
+            "password": "Password",
+            "country": "Country",
+            "confirmPassword": "Confirm Password",
+            "loginGoogle": "Continue with Google",
+            "loginFacebook": "Continue with Facebook",
+            "haveAccount": "Already have an account?",
+            "register": "Sign Up",
             "tandcDescription": "By clicking on pay, you are agreeing to the",
             "tandc": "terms and conditions"
         },
-        "library":{
-            "description":"You can now start uploading your audio files, if you are not sure how to start you can see our tutorial here"
+        "library": {
+            "description": "You can now start uploading your audio files. If you're unsure how to begin, you can watch our tutorial here.",
+            "btnAddSong": "Add song",
+            "addSongDescription": "You don't have any songs. To start, add your files here:",
+            "tutorial": "Watch tutorial",
+            
+            "nameTH": "Name",
+            "durationTH": "Duration",
+            "creationTH": "Creation",
+            "stateTh": "Status",
+            "downloadTt": "Download",
+            "settingsTt": "Edit",
+            "shareTt": "Share"
+        },
+        "profile": {
+            "editProfile": "Edit profile",
+            "titleInfo":"General information",
+            "name": "First Name",
+            "lastname": "Last Name",
+            "country": "Country",
+            "email": "E-mail",
+            "save": "Save",
+            "currentPassword": "Current password",
+            "password": "Password",
+            "newPassword": "New password",
+            "confirmPassword": "Confirm password",
+            "btnUpdatePassword": "Update password",
+            "btnEditPhoto": "Edit photo"
+        },
+        "state": {
+            "back": "Back",
+            "description": "We will be mixing your song live. Connect on May 12th at the following link!",
+            "linkDescription": "Go to live mixing!",
+            "titleInformation": "Information",
+            "titleHistory": "History",
+            "nameInf": "Name",
+            "artistInf": "Artist",
+            "specialtyInf": "Specialty",
+            "support":"Support",
+            "needSupport": "I need support",
+            "titleProgress": "Progress",
+            "uploadMaster": "Upload master",
+            "uploadStems": "Upload stems",
+            "send":"Send"
+        },
+        "shoppingCart": {
+            "title": "Products in your cart",
+            "song": "Song",
+            "cuponText": "Do you have a coupon?",
+            "cupon": "Coupon",
+            "total": "Total",
+            "payMethod": "Choose your payment method",
+            "pay": "Pay",
+            "tandcDescription": "By clicking on pay, you are agreeing to the",
+            "tandc": "terms and conditions"
+        }
+    },
+    "modal": {
+        "support": {
+            "name": "Name",
+            "textarea": "Please provide details about your request.",
+            "send": "Send"
+        },
+        "uploadSong": {
+            "title": "Upload your song",
+            "file": "File name",
+            "artist": "Artist",
+            "specialty": "Specialty",
+            "uploadMaster": "Upload master",
+            "uploadStems": "Upload stems",
+            "upload": "Upload",
+            "uploadInProcess": "Uploading in progress",
+            "errorMessage": "Sorry, an error occurred while uploading your file. Please try again.",
+            "uploadSong": "Try again",
+            "uploadAgain": "Upload another file",
+            "btnLibrary": "Go to library"
+        },
+        "successPay": {
+            "title": "Your payment was successful!",
+            "description": "(You can now start uploading your audio files....).",
+            "send": "Send"
+        }
+    },
+    "component":{
+        "menu": {
+            "home": "Home",
+            "help": "Help",
+            "users": "Users",
+            "myProfile": "My profile",
+            "library": "Library",
+            "plans": "Plans",
+            "singOut": "Log out"
+        },
+        "table":{
+            "name":"Name",
+            "duration":"Duration",
+            "creation":"Creation",
+            "state":"State",
+            "songAvailables": "Available songs"
         }
     }
 }

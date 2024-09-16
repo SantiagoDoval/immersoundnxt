@@ -5,14 +5,13 @@ import './biblioteca.scss'
 import bibliotecaTitle from '@/assets/bibliotecaTitle.png'
 import FirstSongUpload from '@/components/firstSongUpload/FirstSongUpload';
 import TableLibrary from '@/components/tableLibrary/TableLibrary';
-import { Locale } from '../../../../i18n.config';
-import { useEffect, useState } from 'react';
-import { getDictionary } from '@/lib/dictionary';
+
+import useGetText from '@/hooks/useGetText';
 
 const data=[
   {
     id:'1',
-    name:'Soltera',
+    name:'Soltera en la discoteca',
     duration:'2:41',
     creation:'06/09/2024',
     state:'inProcess'
@@ -55,31 +54,14 @@ const data=[
 
 const data1=[]
 
-const Biblioteca = ({params:{lang}}:{params:{lang:Locale}}) => {
-  
-  const [page, setPage] = useState<any>(null); 
-  
-  useEffect(()=>{
-    const getLenguaje=async()=>{
-      try {
-        const { page } = await getDictionary(lang);
-        setPage(page);                 
-      } catch (error) {
-        console.error('Error fetching data:', error);                
-      }
-    }        
-    getLenguaje() 
-  },[lang])
-  
-  console.log("🚀 ~ Biblioteca ~ page:", page)
-
+const Biblioteca = () => {  
   return (
                  
       <section className="container">      
           <div className="library-container">
               <Image className="image-title-section" src={bibliotecaTitle} width={520} height={300} alt="title" />
-              {(data1.length===0) ? (
-                <FirstSongUpload lang={page} />
+              {(data.length===0) ? (
+                <FirstSongUpload />
               ):(
                 <div className='w-full'>
                   <TableLibrary data={data} />
