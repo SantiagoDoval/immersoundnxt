@@ -1,11 +1,10 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,  // Enforce React best practices
+const nextConfig = {  // Enforce React best practices
   swcMinify: true,        // Enable SWC-based minification for faster builds
   output: "standalone",   // For deployments (including Cloudflare Pages)
   experimental: {
     appDir: true,         // Next.js 14 feature: Use the `app` directory
-    runtime: "edge",      // Set Edge Runtime for Cloudflare compatibility
+    // Removed runtime: "edge" to ensure compatibility with Node.js
   },
   i18n: {
     locales: ['en', 'es'],  // Define the supported languages
@@ -23,7 +22,7 @@ async function setupDevPlatform() {
 }
 
 if (process.env.NODE_ENV === "development") {
-  await setupDevPlatform();
+  setupDevPlatform();
 }
 
 export default nextConfig;

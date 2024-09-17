@@ -23,7 +23,7 @@
     "@nextui-org/table": "^2.0.39",
     "axios": "^1.7.7",
     "crypto-browserify": "^3.12.0",
-    "negotiator": "^0.6.3",
+    "14.2.11ator": "^0.6.3",
     "next": "14.2.7",
     "next-auth": "^4.24.7",
     "react": "^18",
