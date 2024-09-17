@@ -9,50 +9,53 @@ function createSimpleToken(email: string) {
 }
 
 const authOptions: NextAuthOptions = {
-  providers: [
-    CredentialsProvider({
-      name: 'Credentials',
-      credentials: {
-        email: { label: 'Email', type: 'text' },
-        password: { label: 'Password', type: 'password' },
-      },
-      async authorize(credentials, req) {
-        const token = createSimpleToken(credentials?.email || '');
+  providers:[
+    
+  ]
+  // providers: [
+  //   CredentialsProvider({
+  //     name: 'Credentials',
+  //     credentials: {
+  //       email: { label: 'Email', type: 'text' },
+  //       password: { label: 'Password', type: 'password' },
+  //     },
+  //     async authorize(credentials, req) {
+  //       const token = createSimpleToken(credentials?.email || '');
 
-        if (credentials?.email === 'luisjaviermezahernandez@gmail.com' && credentials.password === '123456') {
-          const user = {
-            id: '1',
-            name: 'luis',
-            email: 'luisjaviermezahernandez@gmail.com',
-            token,
-            data: {
-              message: 'Payment not found',
-              code: 400,
-              data: null,
-            },
-          };
+  //       if (credentials?.email === 'luisjaviermezahernandez@gmail.com' && credentials.password === '123456') {
+  //         const user = {
+  //           id: '1',
+  //           name: 'luis',
+  //           email: 'luisjaviermezahernandez@gmail.com',
+  //           token,
+  //           data: {
+  //             message: 'Payment not found',
+  //             code: 400,
+  //             data: null,
+  //           },
+  //         };
 
-          return user;
-        }
-        return null;
-      },
-    }),
-  ],
-  session: {
-    strategy: 'jwt', // You can still use the 'jwt' strategy, just ensure it's lightweight
-  },
-  callbacks: {
-    async jwt({ token, user }: any) {
-      if (user) {
-        token.token = user.token;
-      }
-      return token;
-    },
-    async session({ session, token }: { session: any; token: JWT }) {
-      session.token = token.token;
-      return session;
-    },
-  },
+  //         return user;
+  //       }
+  //       return null;
+  //     },
+  //   }),
+  // ],
+  // session: {
+  //   strategy: 'jwt', // You can still use the 'jwt' strategy, just ensure it's lightweight
+  // },
+  // callbacks: {
+  //   async jwt({ token, user }: any) {
+  //     if (user) {
+  //       token.token = user.token;
+  //     }
+  //     return token;
+  //   },
+  //   async session({ session, token }: { session: any; token: JWT }) {
+  //     session.token = token.token;
+  //     return session;
+  //   },
+  // },
 };
 
 export default authOptions;

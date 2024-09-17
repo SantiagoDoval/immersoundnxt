@@ -4,7 +4,7 @@ const nextConfig = {  // Enforce React best practices
   output: "standalone",   // For deployments (including Cloudflare Pages)
   experimental: {
     // appDir: true,         // Next.js 14 feature: Use the `app` directory
-    runtime: "nodejs" 
+    // runtime: "nodejs" 
   },
   i18n: {
     locales: ['en', 'es'],  // Define the supported languages
