@@ -5,6 +5,8 @@ import Navbar from "@/components/layout/navbar/Navbar";
 import Header from "@/components/layout/navbar/Header";
 import SessionProviderWrapper from "@/components/sessionProvider/SessionProviderWrapper";
 
+export const runtime = "edge";
+
 
 const monserrat = Montserrat({ subsets: ["latin"] });
 
