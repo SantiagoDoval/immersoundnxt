@@ -7,7 +7,9 @@
 // };
 
 // export default nextConfig;
-const webpack = require('webpack');
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+import webpack from 'webpack';
 
 const nextConfig = {
   webpack: (config, { isServer }) => {
