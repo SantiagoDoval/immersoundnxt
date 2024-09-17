@@ -13,6 +13,7 @@ const require = createRequire(import.meta.url);
 const nextConfig = {
   webpack: (config, { isServer }) => {
     if (!isServer) {
+      // Añadimos las alternativas de módulos de Node.js para el entorno del navegador
       config.resolve.fallback = {
         crypto: require.resolve('crypto-browserify'),
         stream: require.resolve('stream-browserify'),
