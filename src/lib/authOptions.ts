@@ -3,78 +3,53 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import { NextAuthOptions, Session } from "next-auth";
 import { JWT } from "next-auth/jwt";
 
-const authOptions:NextAuthOptions={
-    providers:[
+const authOptions: NextAuthOptions = {
+    providers: [
         CredentialsProvider({
-            name:"Credentials",
+            name: "Credentials",
             credentials: {
                 email: { label: "Email", type: "text" },
                 password: { label: "Password", type: "password" }
-              },
-              async authorize(credentials, req) {
-                const token=generateToken('1')
+            },
+            async authorize(credentials, req) {
+                // Simulación de token sin depender de Node.js API específicas
+                const token = `edge-token-1`;
 
-                if(credentials?.email==='luisjaviermezahernandez@gmail.com' && credentials.password==='123456'){
-                  const user={
-                    id:'1',
-                    name:'luis',
-                    email:'luisjaviermezahernandez@gmail.com',
-                    token,
-                    data:{
-                      message: "Payment not found",
-                      code: 400,
-                      data: null
-                    }
-                  };
+                if (credentials?.email === 'luisjaviermezahernandez@gmail.com' && credentials.password === '123456') {
+                    const user = {
+                        id: '1',
+                        name: 'luis',
+                        email: 'luisjaviermezahernandez@gmail.com',
+                        token,
+                        data: {
+                            message: "Payment not found",
+                            code: 400,
+                            data: null
+                        }
+                    };
 
-                  return user;
-
+                    return user;
                 }
-                return null
-                
-              // try{
-              //     const response=await AuthenticationServices.userLogin({
-              //         email:'luisjaviermezahernandez@gmail.com',
-              //         password:'123456',
-              //     })                 
-              //     console.log(response,'exito')
-                  
-              //     if (response ) {
-              //         return {id:'1',email:'daljl@hff.com'};
-              //     } else {
-              //       console.log('test')
-              //         return null;
-              //     }
-
-              // }catch(error){
-              //     console.error("Error during authorization:", error);
-              //     // console.error("Error during authorization:");
-              //     return null;
-              // }
+                return null;
             }
-        })       
+        })
     ],
     session: {
-      strategy: 'jwt',      
+        strategy: 'jwt',
     },
     callbacks: {
-      async jwt({ token, user }:any) {
-        if (user) {
-          // Incluye el token temporal en el objeto JWT
-          token.token = user.token;
+        async jwt({ token, user }: any) {
+            if (user) {
+                token.token = user.token;
+            }
+            return token;
+        },
+        async session({ session, token }: { session: any; token: JWT }) {
+            session.token = token.token;
+            return session;
         }
-        return token;
-      },
-      async session({ session, token }: { session: any; token: JWT }) {
-        // Añade el token a la sesión para usarlo en el cliente
-        session.token = token.token;
-        return session;
-      }
     },
-}
-
-const generateToken = (userId: string) => {
-  return `fake-token-${userId}-${Date.now()}`; // Simulación
 };
 
+// Eliminado el uso de Date.now() para evitar problemas en Edge
 export default authOptions;
