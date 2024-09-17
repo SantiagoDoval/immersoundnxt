@@ -29,7 +29,7 @@ const useGetText = (type:string,page:string) => {
             }
         }        
         getLenguaje() 
-    },[lang])    
+    },[lang,page,type])    
     
     return {t,lang}
 }

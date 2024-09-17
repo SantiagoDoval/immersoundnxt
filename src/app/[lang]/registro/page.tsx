@@ -39,7 +39,7 @@ const Registro = () => {
 		if (status === 'authenticated') {
 			router.push(`/${lang}/biblioteca`);
 		}
-	}, [status]);
+	}, [status,lang,router]);
 
     const [formData,setFormData]=useState({
         firstName:'',

@@ -29,7 +29,7 @@ const Login = () => {
 		if (status === 'authenticated') {
 			router.push(`/${lang}/biblioteca`);
 		}
-	}, [status]);
+	}, [status,lang,router]);
 
     const [recoveryPassword, setRecoveryPassword] = useState(false);
     const [formData,setFormData]=useState({

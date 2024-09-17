@@ -86,7 +86,7 @@ const TableLibrary = ({ data }: any) => {
             default:
                 return cellValue;
         }
-    }, [])
+    }, [lang])
 
     
   const classNames = React.useMemo(
