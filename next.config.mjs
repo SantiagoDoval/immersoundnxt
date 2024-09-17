@@ -2,10 +2,10 @@
 const nextConfig = {  // Enforce React best practices
   swcMinify: true,        // Enable SWC-based minification for faster builds
   output: "standalone",   // For deployments (including Cloudflare Pages)
-  experimental: {
-    appDir: true,         // Next.js 14 feature: Use the `app` directory
-    // Removed runtime: "edge" to ensure compatibility with Node.js
-  },
+  // experimental: {
+  //   appDir: true,         // Next.js 14 feature: Use the `app` directory
+  //   // Removed runtime: "edge" to ensure compatibility with Node.js
+  // },
   i18n: {
     locales: ['en', 'es'],  // Define the supported languages
     defaultLocale: 'en',    // Default language
