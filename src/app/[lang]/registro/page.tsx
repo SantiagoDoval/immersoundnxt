@@ -1,5 +1,8 @@
 'use client'
 
+export const runtime = 'edge';
+
+
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import logo from '@/assets/LogoW.png'

@@ -1,5 +1,8 @@
 'use client'
 
+export const runtime = 'edge';
+
+
 import { TextField } from '@mui/material'
 import './perfil.scss'
 import { inputStyle } from '@/utils/inputStyle'

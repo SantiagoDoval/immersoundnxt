@@ -1,5 +1,7 @@
 'use client'
 
+export const runtime = 'edge';
+
 import Image from 'next/image'
 import './biblioteca.scss'
 import bibliotecaTitle from '@/assets/bibliotecaTitle.png'

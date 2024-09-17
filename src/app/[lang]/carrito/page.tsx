@@ -1,5 +1,7 @@
 'use client'
 
+export const runtime = 'edge';
+
 import Image from "next/image"
 import './carrito.scss'
 import logo from '@/assets/LogoW.png'

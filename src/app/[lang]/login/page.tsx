@@ -1,5 +1,8 @@
 'use client'
 
+export const runtime = 'edge';
+
+
 import Image from 'next/image'
 import logo from '@/assets/LogoW.png'
 import { TextField } from '@mui/material'
