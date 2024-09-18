@@ -1,7 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = { 
   swcMinify: true,       
-  output: "standalone",  
+  output: "standalone",
+  experimental:{
+    runtime:'edge',
+  },
   i18n: {
     locales: ['en', 'es'], 
     defaultLocale: 'en',   
