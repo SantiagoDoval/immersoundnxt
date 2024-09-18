@@ -39,8 +39,7 @@ const authOptions: NextAuthOptions = {
     }),
   ],
   session: {
-    strategy: 'jwt', // Using JWT strategy
-    
+    strategy: 'jwt', // Using JWT strategy    
   },
   callbacks: {
     async jwt({ token, user }: { token: JWT; user?: any }) {

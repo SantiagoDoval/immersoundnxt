@@ -6,9 +6,9 @@ const nextConfig = {
     locales: ['en', 'es'], 
     defaultLocale: 'en',   
   },
-  images: {
-    domains: ['your-image-domain.com'], 
-  },
+  // images: {
+  //   domains: ['your-image-domain.com'], 
+  // },
 };
 
 async function setupDevPlatform() {
