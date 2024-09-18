@@ -1,14 +1,28 @@
+import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import { NextAuthOptions, Session } from 'next-auth';
-import { JWT } from 'next-auth/jwt';
 
-// Custom function to create a lightweight token without crypto dependency
-function createSimpleToken(email: string): string {
-  // A basic token structure without using any cryptographic hashing
-  return `simple-token-${email}`;
+interface MyUser {
+  id: string;
+  name: string;
+  email: string;
+  // Remove unnecessary data field for Edge Runtime compatibility
+  // data: any;
 }
 
-const authOptions: NextAuthOptions = {
+async function authorize(credentials: Record<"email" | "password", string> | undefined, req: any): Promise<MyUser | null> {
+  // Implement your custom authentication logic here (replace with your database/API interaction)
+  if (credentials?.email === 'luisjaviermezahernandez@gmail.com' && credentials?.password === '123456') {
+    return {
+      id: '1',
+      name: 'luis',
+      email: 'luisjaviermezahernandez@gmail.com',
+      // Remove user.token as it's not required for Edge Runtime authentication
+    } as MyUser;
+  }
+  return null;
+}
+
+export default NextAuth({
   providers: [
     CredentialsProvider({
       name: 'Credentials',
@@ -16,43 +30,14 @@ const authOptions: NextAuthOptions = {
         email: { label: 'Email', type: 'text' },
         password: { label: 'Password', type: 'password' },
       },
-      async authorize(credentials) {
-        const token = createSimpleToken(credentials?.email || '');
-
-        if (credentials?.email === 'luisjaviermezahernandez@gmail.com' && credentials.password === '123456') {
-          const user = {
-            id: '1',
-            name: 'luis',
-            email: 'luisjaviermezahernandez@gmail.com',
-            token,
-            data: {
-              message: 'Payment not found',
-              code: 400,
-              data: null,
-            },
-          };
-
-          return user;
-        }
-        return null;
-      },
+      authorize,
     }),
   ],
   session: {
-    strategy: 'jwt', // Using JWT strategy    
+    strategy: 'jwt',
+    maxAge: 30 * 60, // Adjust session expiration as needed
   },
-  callbacks: {
-    async jwt({ token, user }: { token: JWT; user?: any }) {
-      if (user) {
-        token.token = user.token;
-      }
-      return token;
-    },
-    async session({ session, token }: { session: any; token: JWT }) {
-      session.token = token.token;
-      return session;
-    },
+  jwt: {
+    secret: process.env.NEXTAUTH_SECRET, // Replace with a secure secret
   },
-};
-
-export default authOptions;
+});
