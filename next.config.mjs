@@ -2,9 +2,6 @@
 const nextConfig = { 
   swcMinify: true,       
   output: "standalone",
-  experimental:{
-    runtime:'edge',
-  },
   i18n: {
     locales: ['en', 'es'], 
     defaultLocale: 'en',   
